@@ -1,0 +1,94 @@
+baseURL = 'https://GPUburnout.github.io/llm-journey/'
+languageCode = 'en-us'
+title = 'My LLM Journey'
+theme = 'PaperMod'
+[pagination]
+  pagerSize = 10
+
+[params]
+  env = "production"
+  description = "Building language models from tiny to medium scale - insights, tips, and lessons learned."
+  author = "GPUburnout"
+
+  # Visual polish
+  defaultTheme = "dark"
+  disableThemeToggle = false
+
+  # Layout options
+  showReadingTime = true
+  showShareButtons = true
+  showPostNavLinks = true
+  showBreadCrumbs = true
+  showCodeCopyButtons = true
+  showToc = true
+  TocOpen = true
+
+  # Homepage profile mode (more polished than info mode)
+  [params.profileMode]
+    enabled = true
+    title = "Building LLMs From Scratch"
+    subtitle = "From 150MB to 12GB datasets. GPT-2 Small trained on 2.8B tokens. 134M parameters. 7x optimization speedup. Every lesson documented."
+    imageUrl = "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/svg/emoji_u1f916.svg"
+    imageWidth = 140
+    imageHeight = 140
+    imageTitle = "LLM Journey"
+
+    [[params.profileMode.buttons]]
+      name = "Read the Journey"
+      url = "posts/"
+
+    [[params.profileMode.buttons]]
+      name = "View on GitHub"
+      url = "https://github.com/GPUburnout"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/GPUburnout"
+
+  # Cover image defaults
+  [params.cover]
+    hiddenInList = false
+    hiddenInSingle = false
+
+[params.editPost]
+  URL = "https://github.com/GPUburnout/llm-journey/tree/main/content"
+  Text = "Suggest Changes"
+  appendFilePath = true
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    style = "monokai"
+
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[[menu.main]]
+  identifier = "posts"
+  name = "Posts"
+  url = "posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "tags"
+  name = "Tags"
+  url = "tags/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "archives"
+  name = "Archives"
+  url = "archives/"
+  weight = 30
+
+[[menu.main]]
+  identifier = "search"
+  name = "Search"
+  url = "search/"
+  weight = 40

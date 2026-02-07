@@ -1,0 +1,376 @@
+/* Custom styling for polished look */
+
+/* Gradient accent for profile title */
+.profile .profile_inner h1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+/* Better button styling */
+.profile .profile_inner .buttons {
+  margin-top: 1.5rem;
+}
+
+.profile .profile_inner .button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile .profile_inner .button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Post cards with subtle hover effect */
+.post-entry {
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-entry:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Better code blocks */
+.highlight {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.highlight pre {
+  border-radius: 8px;
+}
+
+/* Table styling */
+table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better TOC styling */
+.toc {
+  border-radius: 8px;
+  background: var(--code-bg);
+}
+
+/* Post title gradient on hover */
+.post-title:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Social icons hover effect */
+.social-icons a:hover svg {
+  fill: #667eea;
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
+/* Header blur effect */
+.header {
+  backdrop-filter: blur(10px);
+}
+
+/* ========================================
+   GPU Burning Animation Keyframes
+   ======================================== */
+@keyframes burn {
+  0%, 100% {
+    box-shadow:
+      0 0 15px #ff6b35,
+      0 0 30px #ff6b35,
+      0 0 45px #f7931e,
+      0 0 60px #f7931e;
+  }
+  50% {
+    box-shadow:
+      0 0 20px #ff6b35,
+      0 0 40px #ff6b35,
+      0 0 60px #f7931e,
+      0 0 80px #f7931e,
+      0 0 100px #ff4500;
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  25% { opacity: 0.9; }
+  50% { opacity: 0.75; }
+  75% { opacity: 0.85; }
+}
+
+/* Realistic flame animation */
+@keyframes flame {
+  0%, 100% {
+    transform: scaleY(1) scaleX(1) translateY(0);
+    opacity: 1;
+  }
+  25% {
+    transform: scaleY(1.2) scaleX(0.9) translateY(-3px);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scaleY(0.9) scaleX(1.1) translateY(-1px);
+    opacity: 1;
+  }
+  75% {
+    transform: scaleY(1.15) scaleX(0.95) translateY(-4px);
+    opacity: 0.85;
+  }
+}
+
+@keyframes flame-rise {
+  0% {
+    transform: translateY(0) scaleY(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-35px) scaleY(1.5) rotate(5deg);
+    opacity: 0;
+  }
+}
+
+@keyframes ember {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-30px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   Fixed Info Panel - Upper Right
+   ======================================== */
+.fixed-info-panel {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  width: 220px;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.panel-avatar {
+  width: 189px;
+  height: 189px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  padding: 5px;
+  position: relative;
+  background: linear-gradient(0deg, #ff4500 0%, #ff6b35 30%, #f7931e 60%, #ffcc00 100%);
+  animation: burn 2s ease-in-out infinite, flicker 0.3s ease-in-out infinite;
+}
+
+.panel-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+}
+
+/* Flame tongue shapes */
+.flame {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flame-rise 1.5s ease-out infinite;
+  z-index: 1;
+}
+
+.flame-1 {
+  width: 14px;
+  height: 28px;
+  background: linear-gradient(to top, #ff4500, #ff6b35, #ffcc00);
+  top: -8px;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.flame-2 {
+  width: 12px;
+  height: 24px;
+  background: linear-gradient(to top, #ff4500, #f7931e, #ffcc00);
+  top: -6px;
+  left: 40%;
+  animation-delay: 0.2s;
+}
+
+.flame-3 {
+  width: 16px;
+  height: 32px;
+  background: linear-gradient(to top, #ff4500, #ff6b35, #fff176);
+  top: -10px;
+  left: 55%;
+  animation-delay: 0.4s;
+}
+
+.flame-4 {
+  width: 10px;
+  height: 20px;
+  background: linear-gradient(to top, #ff4500, #f7931e, #ffcc00);
+  top: -5px;
+  right: 20%;
+  animation-delay: 0.6s;
+}
+
+.flame-5 {
+  width: 12px;
+  height: 22px;
+  background: linear-gradient(to top, #ff4500, #ff6b35, #ffcc00);
+  top: -4px;
+  left: 10%;
+  animation-delay: 0.8s;
+}
+
+/* Ember sparks */
+.ember {
+  position: absolute;
+  border-radius: 50%;
+  animation: ember 2s ease-out infinite;
+  z-index: 3;
+}
+
+.ember-1 {
+  width: 5px;
+  height: 5px;
+  top: 5%;
+  left: 15%;
+  background: #ffcc00;
+  animation-delay: 0s;
+}
+
+.ember-2 {
+  width: 4px;
+  height: 4px;
+  top: 8%;
+  right: 18%;
+  background: #ff6b35;
+  animation-delay: 0.4s;
+}
+
+.ember-3 {
+  width: 3px;
+  height: 3px;
+  top: 2%;
+  left: 45%;
+  background: #fff176;
+  animation-delay: 0.8s;
+}
+
+.ember-4 {
+  width: 4px;
+  height: 4px;
+  top: 10%;
+  left: 8%;
+  background: #f7931e;
+  animation-delay: 1.2s;
+}
+
+.ember-5 {
+  width: 3px;
+  height: 3px;
+  top: 0%;
+  right: 30%;
+  background: #ffcc00;
+  animation-delay: 1.6s;
+}
+
+.panel-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 2px;
+}
+
+.panel-title {
+  font-size: 0.75rem;
+  color: var(--secondary);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.panel-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-stats .stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-stats .stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ff4500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.panel-stats .stat-label {
+  font-size: 0.65rem;
+  color: var(--secondary);
+  text-transform: uppercase;
+}
+
+.panel-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.panel-links a {
+  color: var(--secondary);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.panel-links a:hover {
+  color: #667eea;
+  transform: scale(1.15);
+}
+
+/* Hide on mobile/tablets */
+@media (max-width: 1200px) {
+  .fixed-info-panel {
+    display: none;
+  }
+}

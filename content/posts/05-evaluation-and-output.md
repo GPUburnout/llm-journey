@@ -175,7 +175,7 @@ Cool. Cool cool cool.
 2. **Test generation quality** — Does it produce coherent text? We'll see.
 3. **Consider GPT-2 Medium** — 355M params. Because I'm a glutton for punishment.
 4. **Fine-tuning experiments** — Make it useful for something specific.
-5. **Release on GitHub/HuggingFace** — Share the pain with others.
+5. ~~**Release on GitHub/HuggingFace**~~ — Done! [github.com/GPUburnout/gpt2-from-scratch](https://github.com/GPUburnout/gpt2-from-scratch)
 
 ---
 
@@ -191,4 +191,4 @@ The gap between "I've read the attention paper" and "I've debugged tensor shapes
 
 And for the love of GPUs, optimize *before* you start training. Not on epoch 4. I learned that one the expensive way.
 
-*Questions? Find me on GitHub. I've made every mistake so you don't have to.*
+*Questions? Check out the code at [github.com/GPUburnout/gpt2-from-scratch](https://github.com/GPUburnout/gpt2-from-scratch). I've made every mistake so you don't have to.*

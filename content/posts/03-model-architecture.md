@@ -123,15 +123,16 @@ Look at that growth. They grow up so fast.
 
 ## The Files That Made This Possible
 
+All code available at [github.com/GPUburnout/gpt2-from-scratch](https://github.com/GPUburnout/gpt2-from-scratch)
+
 | File | What It Does |
 |------|--------------|
-| `model.py` | The transformer itself (fully parameterized, because hardcoding is for cowards) |
-| `tokenizer.py` | Character-level tokenizer (Phase 1-2) |
-| `tokenizer_bpe.py` | BPE tokenizer (Phase 3, the good stuff) |
-| `tokenize_local.py` | Converts text to binary on local machine |
-| `tokenize_local_bpe.py` | Same but BPE |
-| `train_colab_mmap.py` | The training script that keeps me up at night |
-| `generate.py` | Makes the model spit out text |
+| [`model.py`](https://github.com/GPUburnout/gpt2-from-scratch/blob/main/model.py) | The transformer itself (fully parameterized, because hardcoding is for cowards) |
+| [`tokenizer.py`](https://github.com/GPUburnout/gpt2-from-scratch/blob/main/tokenizer.py) | Character-level tokenizer (Phase 1-2) |
+| [`tokenizer_bpe.py`](https://github.com/GPUburnout/gpt2-from-scratch/blob/main/tokenizer_bpe.py) | BPE tokenizer (Phase 3, the good stuff) |
+| [`tokenize_local_bpe.py`](https://github.com/GPUburnout/gpt2-from-scratch/blob/main/tokenize_local_bpe.py) | Converts text to binary with BPE |
+| [`train_colab_mmap.py`](https://github.com/GPUburnout/gpt2-from-scratch/blob/main/train_colab_mmap.py) | The training script that keeps me up at night |
+| [`generate.py`](https://github.com/GPUburnout/gpt2-from-scratch/blob/main/generate.py) | Makes the model spit out text |
 
 ---
 

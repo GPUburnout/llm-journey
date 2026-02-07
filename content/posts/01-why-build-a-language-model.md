@@ -15,6 +15,8 @@ Spoiler: much much harder than I expected. But also way more educational than re
 
 **What I actually achieved:** GPT-2 Small (134M params) trained on 12GB of data, with a 7x speedup after I stopped doing stupid things. More on that later.
 
+**All the code:** [github.com/GPUburnout/gpt2-from-scratch](https://github.com/GPUburnout/gpt2-from-scratch)
+
 ### The Damage Report
 
 | Phase | Model Size | Dataset | Training Time | My Sanity |

@@ -1,14 +1,15 @@
-baseURL = 'https://GPUburnout.github.io/llm-journey/'
+baseURL = 'https://gpuburnout.com/'
 languageCode = 'en-us'
-title = 'My LLM Journey'
+title = 'LLM Training From Scratch | GPT-2 Tutorial'
 theme = 'PaperMod'
 [pagination]
   pagerSize = 10
 
 [params]
   env = "production"
-  description = "Building language models from tiny to medium scale - insights, tips, and lessons learned."
+  description = "Learn to train GPT-2 from scratch: LLM training tutorial covering transformer architecture, PyTorch implementation, tokenization, and machine learning optimization. Step-by-step guide to building language models."
   author = "GPUburnout"
+  keywords = ["machine learning", "LLM", "GPT-2", "training", "transformer", "deep learning", "PyTorch", "NLP", "language model", "AI tutorial"]
 
   # Visual polish
   defaultTheme = "dark"
@@ -65,6 +66,12 @@ theme = 'PaperMod'
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+# Sitemap settings for SEO
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]

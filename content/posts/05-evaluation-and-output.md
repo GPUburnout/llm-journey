@@ -87,6 +87,21 @@ Not Shakespeare, but not keyboard spam either. Progress.
 
 ---
 
+## Try It Yourself
+
+Don't take my word for it. Here's the actual model — pick a checkpoint and see how it generates:
+
+<iframe
+	src="https://gpuburnout-gpt2-from-scratch.hf.space"
+	frameborder="0"
+	width="100%"
+	height="700"
+></iframe>
+
+*Three models to compare: Tiny Shakespeare (3.2M), Medium (3.3M), and GPT-2 Small (134M). The difference is... noticeable.*
+
+---
+
 ## The Two Sessions: A Tale of Suffering and Enlightenment
 
 **Session 1 (Epochs 1-3):** The Dark Ages

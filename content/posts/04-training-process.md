@@ -1,13 +1,13 @@
 ---
-title: "10 Training Challenges and How I Solved Them"
+title: "11 Training Challenges and How I Solved Them"
 date: 2026-02-02
 draft: false
-tags: ["training", "debugging", "optimization", "torch-compile", "AMP", "Colab"]
+tags: ["training", "debugging", "optimization", "torch-compile", "AMP", "flash-attention", "Colab"]
 summary: "A comprehensive guide to every way I shot myself in the foot training GPT-2 Small. Learn from my pain."
 weight: 4
 ---
 
-Training GPT-2 Small on 12GB of data sounded simple. It was not simple. Here are 10 ways the universe humbled me, and how I eventually fixed each one.
+Training GPT-2 Small on 12GB of data sounded simple. It was not simple. Here are 11 ways the universe humbled me, and how I eventually fixed each one.
 
 ---
 
@@ -214,7 +214,38 @@ mmap_data = np.memmap(args.bin_file, dtype=dtype_str, mode='r')
 
 ---
 
-## The Optimization Journey (1.6s → 0.225s)
+## Challenge 11: The Last 2x (Flash Attention)
+
+**The Symptom:** 0.225s/step. Good, but the A100 still had more to give.
+
+**The Problem:** Standard attention materializes a massive `[batch, heads, seq, seq]` matrix. For batch=64, heads=12, seq=512, that's **800MB** just for attention scores — and it has to read/write from slow HBM memory.
+
+**The Discovery:** PyTorch 2.0+ has Flash Attention built in via `scaled_dot_product_attention`:
+
+```python
+# Old way (materializes full attention matrix):
+scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(d_k)
+attn_weights = F.softmax(scores, dim=-1)
+output = torch.matmul(attn_weights, V)
+
+# New way (Flash Attention, automatic):
+output = F.scaled_dot_product_attention(Q, K, V, is_causal=True)
+```
+
+**What Flash Attention Does:**
+- Processes attention in small tiles that fit in fast SRAM (~19 TB/s)
+- Never writes the full attention matrix to slow HBM (~2 TB/s)
+- Recomputes during backward pass instead of storing
+
+**Result:** **0.1s/step**. 2x faster than AMP alone. The attention memory went from 800MB to ~20MB.
+
+**Lesson:** If you're on PyTorch 2.0+ and not using `scaled_dot_product_attention`, you're leaving free performance on the table.
+
+*Want the full technical breakdown? See [Training Optimizations Deep Dive: Flash Attention](/posts/06-training-optimizations-deep-dive#6-flash-attention-pytorch-20).*
+
+---
+
+## The Optimization Journey (1.6s → 0.1s)
 
 | What I Did | Speed | Speedup | Effort Level |
 |------------|-------|---------|--------------|
@@ -222,9 +253,12 @@ mmap_data = np.memmap(args.bin_file, dtype=dtype_str, mode='r')
 | RAM preload | 0.8s/step | 2x | 1 line of code |
 | Vectorized batching | 0.5s/step | 3.2x | 20 minutes |
 | + torch.compile | 0.35s/step | 4.6x | 1 line of code |
-| + AMP | **0.225s/step** | **7.1x** | 10 lines of code |
+| + AMP | 0.225s/step | 7.1x | 10 lines of code |
+| + Flash Attention | **0.1s/step** | **16x** | Built into PyTorch 2.0+ |
 
-**7x speedup. ~100 hours saved. Not bad for an afternoon of debugging.**
+**16x speedup. ~140 hours saved. The A100 finally earned its electricity bill.**
+
+*For detailed explanations of each optimization (torch.compile internals, AMP/GradScaler mechanics, vectorization patterns), see the [Training Optimizations Deep Dive](/posts/06-training-optimizations-deep-dive).*
 
 ---
 
@@ -234,7 +268,7 @@ mmap_data = np.memmap(args.bin_file, dtype=dtype_str, mode='r')
 - **Profile first.** Is it I/O? Compute? Python? Find out before changing random things.
 - **RAM beats mmap for random access.** Memory-mapping is for sequential reads, not ML training.
 - **Vectorize or suffer.** Python loops in hot paths are a crime.
-- **torch.compile + AMP = free performance.** If you're not using both in 2026, you're volunteering for slow training.
+- **torch.compile + AMP + Flash Attention = free performance.** If you're not using all three in 2026, you're volunteering for slow training.
 
 ### On Colab Survival
 - **Checkpoints go to Drive.** Colab will disconnect. It's not a question of if.

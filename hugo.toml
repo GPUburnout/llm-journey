@@ -28,7 +28,7 @@ theme = 'PaperMod'
   [params.profileMode]
     enabled = true
     title = "Building LLMs From Scratch"
-    subtitle = "From 150MB to 12GB datasets. GPT-2 Small trained on 2.8B tokens. 134M parameters. 7x optimization speedup. Every lesson documented."
+    subtitle = "From 150MB to 12GB datasets. GPT-2 Small trained on 2.8B tokens. 134M parameters. 16x optimization speedup. Every lesson documented."
     imageUrl = "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/svg/emoji_u1f916.svg"
     imageWidth = 140
     imageHeight = 140

@@ -1,0 +1,344 @@
+<div class="profile">
+  {{- with site.Params.profileMode }}
+  <div class="profile_inner">
+
+    <!-- Animated Hero Section -->
+    <div class="hero-container" id="hero-container">
+      <canvas id="viz"></canvas>
+      <div class="vignette"></div>
+
+      <div class="terminal" id="term">
+        <div>step <span class="live" id="t-step">0</span></div>
+        <div>loss <span class="live" id="t-loss">4.200</span></div>
+        <div>lr <span class="live" id="t-lr">6.0e-4</span></div>
+        <div>tok/s <span class="live" id="t-toks">48,291</span></div>
+      </div>
+
+      <div class="text-overlay">
+        <div class="hero-title">Building LLMs <span class="burn">From Scratch</span></div>
+        <div class="hero-subtitle">
+          <span class="val">134M</span> params · <span class="val">2.8B</span> tokens · every lesson documented
+        </div>
+      </div>
+    </div>
+
+    <style>
+      /* Match page background to hero */
+      body {
+        background: #08080d !important;
+      }
+      .main {
+        background: #08080d !important;
+      }
+      /* Break hero out of PaperMod's narrow profile container */
+      .profile {
+        max-width: none !important;
+        padding: 0 !important;
+      }
+      .profile_inner {
+        max-width: none !important;
+        width: 100% !important;
+      }
+      .hero-container {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        height: 500px;
+        overflow: hidden;
+        background: #08080d;
+        border-radius: 12px;
+        margin: 0 auto 24px auto;
+      }
+      .hero-container canvas { position: absolute; top: 0; left: 0; }
+      .text-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 10;
+        pointer-events: none;
+      }
+      .hero-title {
+        font-family: 'Courier New', monospace;
+        font-size: 57px;
+        font-weight: 700;
+        color: #f0f0f5;
+        letter-spacing: -1px;
+        text-shadow: 0 0 60px rgba(34, 211, 238, 0.2);
+        margin-bottom: 14px;
+      }
+      .hero-title .burn {
+        color: #22d3ee;
+        text-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
+      }
+      .hero-subtitle {
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        color: #6b7280;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+      .hero-subtitle .val { color: #00ff41; text-shadow: 0 0 8px rgba(0, 255, 65, 0.3); }
+      .vignette {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: radial-gradient(ellipse at center, transparent 30%, rgba(8,8,13,0.7) 100%);
+        pointer-events: none;
+        z-index: 5;
+      }
+      .terminal {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-family: 'Courier New', monospace;
+        font-size: 18px;
+        color: rgba(0, 180, 0, 0.35);
+        z-index: 6;
+        text-align: right;
+        line-height: 1.8;
+        pointer-events: none;
+        text-shadow: 0 0 8px rgba(0, 255, 0, 0.15);
+      }
+      .terminal .live {
+        color: rgba(0, 255, 65, 0.8);
+        text-shadow: 0 0 10px rgba(0, 255, 65, 0.4), 0 0 30px rgba(0, 255, 65, 0.15);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .hero-container { height: 350px; }
+        .hero-title { font-size: 32px; }
+        .hero-subtitle { font-size: 11px; letter-spacing: 1.5px; }
+        .terminal { font-size: 13px; right: 15px; top: 12px; }
+      }
+      @media (max-width: 480px) {
+        .hero-container { height: 280px; }
+        .hero-title { font-size: 24px; }
+        .hero-subtitle { font-size: 10px; letter-spacing: 1px; }
+        .terminal { font-size: 11px; right: 10px; top: 8px; }
+      }
+    </style>
+
+    {{- partial "social_icons.html" -}}
+
+    {{- with .buttons }}
+    <div class="buttons">
+      {{- range . }}
+      <a class="button" href="{{ trim .url " " }}" rel="noopener" title="{{ .name }}">
+        <span class="button-inner">
+          {{ .name }}
+          {{- if (findRE "://" .url) }}&nbsp;
+          <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+            stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="14" width="14">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+            <path d="M15 3h6v6"></path>
+            <path d="M10 14L21 3"></path>
+          </svg>
+          {{- end }}
+        </span>
+      </a>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+  {{- end}}
+</div>
+
+<script>
+(function() {
+  const container = document.getElementById('hero-container');
+  const canvas = document.getElementById('viz');
+  const ctx = canvas.getContext('2d');
+
+  let W = container.clientWidth;
+  let H = container.clientHeight;
+  const dpr = window.devicePixelRatio || 1;
+
+  function sizeCanvas() {
+    W = container.clientWidth;
+    H = container.clientHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+  }
+  sizeCanvas();
+  window.addEventListener('resize', sizeCanvas);
+
+  // --- Multiple loss curves ---
+  class LossCurve {
+    constructor(color, alpha, decay, noise, yOffset) {
+      this.color = color;
+      this.alpha = alpha;
+      this.decay = decay;
+      this.noise = noise;
+      this.yOffset = yOffset;
+      this.points = [];
+      this.step = 0;
+      for (let i = 0; i < 300; i++) this.addPoint();
+    }
+    addPoint() {
+      const t = this.step / 400;
+      const base = 3.8 * Math.exp(-this.decay * t) + 0.6 + this.yOffset;
+      const n = (Math.random() - 0.5) * this.noise * Math.exp(-1.5 * t);
+      this.points.push(base + n);
+      if (this.points.length > 400) this.points.shift();
+      this.step++;
+    }
+    draw() {
+      if (this.points.length < 2) return;
+      const marginL = 80, marginR = 80;
+      const marginT = 60, marginB = 60;
+      const plotW = W - marginL - marginR;
+      const plotH = H - marginT - marginB;
+
+      ctx.strokeStyle = this.color;
+      ctx.globalAlpha = this.alpha;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      this.points.forEach((v, i) => {
+        const x = marginL + (i / (this.points.length - 1)) * plotW;
+        const y = marginT + (1 - v / 5) * plotH;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+
+      // Glow
+      ctx.strokeStyle = this.color;
+      ctx.globalAlpha = this.alpha * 0.2;
+      ctx.lineWidth = 6;
+      ctx.beginPath();
+      this.points.forEach((v, i) => {
+        const x = marginL + (i / (this.points.length - 1)) * plotW;
+        const y = marginT + (1 - v / 5) * plotH;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  // --- Grid ---
+  function drawGrid() {
+    const marginL = 80, marginR = 80;
+    const marginT = 60, marginB = 60;
+    const plotW = W - marginL - marginR;
+    const plotH = H - marginT - marginB;
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i <= 10; i++) {
+      const x = marginL + (i / 10) * plotW;
+      ctx.beginPath();
+      ctx.moveTo(x, marginT);
+      ctx.lineTo(x, H - marginB);
+      ctx.stroke();
+    }
+    for (let i = 0; i <= 8; i++) {
+      const y = marginT + (i / 8) * plotH;
+      ctx.beginPath();
+      ctx.moveTo(marginL, y);
+      ctx.lineTo(W - marginR, y);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = 'rgba(255,255,255,0.08)';
+    ctx.font = '9px Courier New';
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= 4; i++) {
+      const val = (5 - i * 1.25).toFixed(1);
+      const y = marginT + (i / 4) * plotH;
+      ctx.fillText(val, marginL - 10, y + 3);
+    }
+    ctx.textAlign = 'center';
+    const labels = ['0', '50K', '100K', '150K', '200K'];
+    labels.forEach((l, i) => {
+      const x = marginL + (i / (labels.length - 1)) * plotW;
+      ctx.fillText(l, x, H - marginB + 18);
+    });
+
+    ctx.fillStyle = 'rgba(255,255,255,0.06)';
+    ctx.font = '10px Courier New';
+    ctx.textAlign = 'center';
+    ctx.fillText('training steps', W / 2, H - 15);
+
+    ctx.save();
+    ctx.translate(20, H / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('loss', 0, 0);
+    ctx.restore();
+  }
+
+  // --- Floating tokens ---
+  class Token {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = -20;
+      this.y = 100 + Math.random() * (H - 200);
+      this.speed = 0.3 + Math.random() * 0.8;
+      this.text = ['the','is','of','a','to','in','for','on','that','it','with','as','was','are','be','at','from','or','an','by','not','but','what','all','were','we','when','your','can','had','have','this','each','which','do','how','if'][Math.floor(Math.random() * 37)];
+      this.alpha = 0.04 + Math.random() * 0.06;
+      this.size = 8 + Math.random() * 4;
+    }
+    update() {
+      this.x += this.speed;
+      if (this.x > W + 30) this.reset();
+    }
+    draw() {
+      ctx.fillStyle = 'rgba(245, 158, 11, ' + this.alpha + ')';
+      ctx.font = this.size + 'px Courier New';
+      ctx.fillText(this.text, this.x, this.y);
+    }
+  }
+
+  // Create curves
+  const curves = [
+    new LossCurve('#f59e0b', 0.7, 2.8, 0.5, 0),
+    new LossCurve('#fb923c', 0.25, 2.2, 0.6, 0.15),
+    new LossCurve('#fbbf24', 0.15, 3.2, 0.4, -0.1),
+    new LossCurve('#ef4444', 0.1, 1.8, 0.8, 0.3),
+  ];
+
+  const tokens = [];
+  for (let i = 0; i < 25; i++) {
+    const t = new Token();
+    t.x = Math.random() * W;
+    tokens.push(t);
+  }
+
+  // Terminal update
+  let simStep = 15000;
+  function updateTerminal() {
+    simStep += Math.floor(Math.random() * 3);
+    const progress = simStep / 228000;
+    const loss = (3.8 * Math.exp(-2.8 * progress) + 0.6 + (Math.random() - 0.5) * 0.05).toFixed(3);
+    const lr = (6e-4 * (1 - progress * 0.8)).toExponential(1);
+    const toks = (45000 + Math.floor(Math.random() * 8000)).toLocaleString();
+
+    document.getElementById('t-step').textContent = simStep.toLocaleString();
+    document.getElementById('t-loss').textContent = loss;
+    document.getElementById('t-lr').textContent = lr;
+    document.getElementById('t-toks').textContent = toks;
+  }
+
+  let frame = 0;
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    drawGrid();
+    tokens.forEach(t => { t.update(); t.draw(); });
+    curves.forEach(c => c.draw());
+
+    if (frame % 4 === 0) {
+      curves.forEach(c => c.addPoint());
+      updateTerminal();
+    }
+
+    frame++;
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>

@@ -17,7 +17,7 @@
       <div class="text-overlay">
         <div class="hero-title">Building LLMs <span class="burn">From Scratch</span></div>
         <div class="hero-subtitle">
-          <span class="val">134M</span> params · <span class="val">2.8B</span> tokens · every lesson documented
+          <span class="season">Season 1:</span> GPT-2 <span class="val">134M</span> · <span class="season">Season 2:</span> Llama <span class="val">1B</span>
         </div>
       </div>
     </div>
@@ -80,6 +80,7 @@
         text-transform: uppercase;
       }
       .hero-subtitle .val { color: #00ff41; text-shadow: 0 0 8px rgba(0, 255, 65, 0.3); }
+      .hero-subtitle .season { color: #22d3ee; }
       .vignette {
         position: absolute;
         top: 0; left: 0; right: 0; bottom: 0;
@@ -117,6 +118,50 @@
         .hero-title { font-size: 24px; }
         .hero-subtitle { font-size: 10px; letter-spacing: 1px; }
         .terminal { font-size: 11px; right: 10px; top: 8px; }
+      }
+    </style>
+
+    <!-- Author Blurb -->
+    <div class="author-blurb">
+      <p>By <strong>Jun Park</strong> — Life scientist turned ML builder. PhD in Immunology, 20 years in R&D. <a href="/about/">Read more →</a></p>
+    </div>
+
+    <style>
+      .author-blurb {
+        max-width: 600px;
+        margin: 0 auto 24px auto;
+        padding: 16px 24px;
+        background: rgba(34, 211, 238, 0.05);
+        border: 1px solid rgba(34, 211, 238, 0.15);
+        border-radius: 8px;
+        text-align: center;
+      }
+      .author-blurb p {
+        margin: 0;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        color: #9ca3af;
+        line-height: 1.6;
+      }
+      .author-blurb strong {
+        color: #22d3ee;
+      }
+      .author-blurb a {
+        color: #f59e0b;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .author-blurb a:hover {
+        text-decoration: underline;
+      }
+      @media (max-width: 768px) {
+        .author-blurb {
+          margin: 0 16px 20px 16px;
+          padding: 12px 16px;
+        }
+        .author-blurb p {
+          font-size: 13px;
+        }
       }
     </style>
 

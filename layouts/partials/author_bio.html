@@ -1,0 +1,68 @@
+<!-- Author Bio Card for Blog Posts -->
+<div class="author-bio-card">
+  <div class="author-bio-avatar">
+    <img src="https://github.com/GPUburnout.png" alt="Jun Park">
+  </div>
+  <div class="author-bio-content">
+    <div class="author-bio-name">Jun Park</div>
+    <div class="author-bio-tagline">Life scientist turned ML builder. PhD in Immunology, 20 years in R&D.</div>
+    <a href="/about/" class="author-bio-link">More about the author →</a>
+  </div>
+</div>
+
+<style>
+  .author-bio-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 40px 0 20px 0;
+    padding: 20px 24px;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .author-bio-avatar {
+    flex-shrink: 0;
+  }
+  .author-bio-avatar img {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 2px solid var(--tertiary);
+  }
+  .author-bio-content {
+    flex: 1;
+  }
+  .author-bio-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .author-bio-tagline {
+    font-size: 14px;
+    color: var(--secondary);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .author-bio-link {
+    font-size: 14px;
+    color: var(--tertiary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .author-bio-link:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 480px) {
+    .author-bio-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 16px;
+    }
+    .author-bio-avatar img {
+      width: 64px;
+      height: 64px;
+    }
+  }
+</style>

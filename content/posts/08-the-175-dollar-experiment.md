@@ -3,12 +3,12 @@ title: "The $175 Experiment: Training GPUburnout-1B on a Single GPU"
 date: 2026-03-01
 draft: true
 tags: ["GPUburnout-1B", "training", "loss-curves", "cost-analysis", "A100", "season-2"]
-description: "I trained a 1 billion parameter language model from scratch on a single A100 for $175. Here's every phase, every dollar, and every surprise — including the moment it started citing real scientific journals."
+description: "I trained a 1 billion parameter language model from scratch on a single A100 for $175. Here's every phase, every dollar, and every surprise — including the moment it started confidently citing journals that don't exist."
 ---
 
 ## The short version
 
-I trained a 1 billion parameter model from scratch. It took 90,000 steps, 11.8 billion tokens, one A100 GPU, and $175. The model went from generating random unicode soup to writing paragraphs about single-cell RNA sequencing with real journal citations.
+I trained a 1 billion parameter model from scratch. It took 90,000 steps, 11.8 billion tokens, one A100 GPU, and $175. The model went from generating random unicode soup to writing paragraphs about single-cell RNA sequencing with confidently hallucinated journal citations. (They look real. They are not.)
 
 This is the full story — every phase, every dollar, and every moment I stared at a loss curve instead of sleeping like a normal person.
 

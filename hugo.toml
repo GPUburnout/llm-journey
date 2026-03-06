@@ -1,6 +1,6 @@
 baseURL = 'https://gpuburnout.com/'
 languageCode = 'en-us'
-title = 'Building LLMs From Scratch | GPUburnout'
+title = 'GPUburnout — Building LLMs From Scratch'
 theme = 'PaperMod'
 [pagination]
   pagerSize = 10

@@ -1,7 +1,7 @@
 ---
 title: "From 134M to 1B: Building GPUburnout-1B From Scratch"
 date: 2026-02-27
-draft: true
+draft: false
 tags: ["GPUburnout-1B", "1B", "scaling", "architecture", "season-2"]
 description: "GPT-2 was the warmup. Now I'm building a 1 billion parameter model from scratch, training it on 12 billion tokens, and documenting every step — including what it costs."
 ---

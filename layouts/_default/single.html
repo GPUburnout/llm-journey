@@ -45,6 +45,9 @@
   <!-- Author Bio Card -->
   {{- partial "author_bio.html" . }}
 
+  <!-- Newsletter Signup -->
+  {{- partial "newsletter_signup.html" . }}
+
   <footer class="post-footer">
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
     <ul class="post-tags">

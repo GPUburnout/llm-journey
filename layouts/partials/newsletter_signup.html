@@ -1,0 +1,121 @@
+<!-- Newsletter Signup -->
+<div class="newsletter-signup">
+  <div class="newsletter-icon">📬</div>
+  <div class="newsletter-content">
+    <div class="newsletter-title">Get notified when new chapters drop</div>
+    <div class="newsletter-subtitle">No spam. Just LLM training insights, straight to your inbox.</div>
+    <form
+      action="https://buttondown.com/api/emails/embed-subscribe/gpuburnout"
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.com/gpuburnout', 'popupwindow')"
+      class="newsletter-form"
+    >
+      <input type="email" name="email" placeholder="your@email.com" required class="newsletter-input" />
+      <button type="submit" class="newsletter-button">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<style>
+  .newsletter-signup {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin: 32px 0;
+    padding: 24px;
+    background: rgba(245, 158, 11, 0.05);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 12px;
+  }
+  .newsletter-icon {
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+  .newsletter-content {
+    flex: 1;
+  }
+  .newsletter-title {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 6px;
+  }
+  .newsletter-subtitle {
+    font-size: 14px;
+    color: var(--secondary);
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .newsletter-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--theme);
+    color: var(--primary);
+  }
+  .newsletter-input::placeholder {
+    color: var(--secondary);
+  }
+  .newsletter-input:focus {
+    outline: none;
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
+  }
+  .newsletter-button {
+    padding: 10px 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: #08080d;
+    background: #f59e0b;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .newsletter-button:hover {
+    background: #fbbf24;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+  }
+
+  /* Dark mode adjustments */
+  .dark .newsletter-signup {
+    background: rgba(245, 158, 11, 0.08);
+  }
+  .dark .newsletter-input {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 480px) {
+    .newsletter-signup {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 16px;
+    }
+    .newsletter-icon {
+      font-size: 28px;
+    }
+    .newsletter-form {
+      flex-direction: column;
+    }
+    .newsletter-input {
+      min-width: auto;
+      width: 100%;
+    }
+    .newsletter-button {
+      width: 100%;
+    }
+  }
+</style>

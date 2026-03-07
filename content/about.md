@@ -39,6 +39,7 @@ That's what this blog is about.
 
 ## Find Me Elsewhere
 
+- **Email**: [jun@gpuburnout.com](mailto:jun@gpuburnout.com)
 - **Blog Source**: [github.com/GPUburnout/llm-journey](https://github.com/GPUburnout/llm-journey)
 - **GPT-2 Training Code**: [github.com/GPUburnout/gpt2-from-scratch](https://github.com/GPUburnout/gpt2-from-scratch)
 - **GitHub**: [github.com/GPUburnout](https://github.com/GPUburnout)

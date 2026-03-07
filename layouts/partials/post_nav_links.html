@@ -1,7 +1,7 @@
 {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{- if and (gt (len $pages) 1) (in $pages . ) }}
 <nav class="paginav">
-  {{- with $pages.Next . }}
+  {{- with $pages.Prev . }}
   {{- $pg := . }}
   <a class="prev" href="{{ .Permalink }}">
     <span class="title">« {{ i18n "prev_page" }}</span>
@@ -10,7 +10,7 @@
     <span>{{- .Name -}}</span>
   </a>
   {{- end }}
-  {{- with $pages.Prev . }}
+  {{- with $pages.Next . }}
   {{- $pg := . }}
   <a class="next" href="{{ .Permalink }}">
     <span class="title">{{ i18n "next_page" }} »</span>

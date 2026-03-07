@@ -10,8 +10,8 @@
       <div class="terminal" id="term">
         <div>step <span class="live" id="t-step">0</span></div>
         <div>loss <span class="live" id="t-loss">4.200</span></div>
-        <div>lr <span class="live" id="t-lr">6.0e-4</span></div>
-        <div>tok/s <span class="live" id="t-toks">48,291</span></div>
+        <div>lr <span class="live" id="t-lr">3.0e-4</span></div>
+        <div>tok/s <span class="live" id="t-toks">28,535</span></div>
       </div>
 
       <div class="text-overlay">
@@ -176,6 +176,7 @@
     <!-- Author Blurb -->
     <div class="author-blurb">
       <p>By <strong>Jun Park</strong> — Dangerously curious life scientist. Currently unsupervised with an A100. <a href="/about/">Read more →</a></p>
+      <p class="blurb-subtitle">{{ .subtitle | markdownify }}</p>
     </div>
 
     <style>
@@ -205,6 +206,12 @@
       }
       .author-blurb a:hover {
         text-decoration: underline;
+      }
+      .author-blurb .blurb-subtitle {
+        margin-top: 10px;
+        font-size: 13px;
+        color: #6b7280;
+        font-style: italic;
       }
       @media (max-width: 768px) {
         .author-blurb {
@@ -386,19 +393,28 @@
     tokens.push(t);
   }
 
-  // Terminal update
-  let simStep = 85000;
+  // Terminal update — counts up to final checkpoint, then holds
+  let simStep = 0;
+  const finalStep = 90000;
+  const finalLoss = 2.494;
+  let settled = false;
   function updateTerminal() {
-    simStep += Math.floor(Math.random() * 3);
-    if (simStep > 90000) simStep = 85000;
-    const progress = simStep / 90000;
-    const loss = (2.494 + (1 - progress) * 0.5 + (Math.random() - 0.5) * 0.02).toFixed(3);
+    if (!settled) {
+      simStep += Math.floor(200 + Math.random() * 400);
+      if (simStep >= finalStep) {
+        simStep = finalStep;
+        settled = true;
+      }
+    }
+    const progress = simStep / finalStep;
+    const jitter = settled ? 0 : (Math.random() - 0.5) * 0.02;
+    const loss = settled ? finalLoss : (4.2 - (4.2 - finalLoss) * progress + jitter);
     const lr = (3e-4 * (1 - progress * 0.9)).toExponential(1);
     const toks = (27500 + Math.floor(Math.random() * 2000)).toLocaleString();
 
     document.getElementById('t-step').textContent = simStep.toLocaleString();
-    document.getElementById('t-loss').textContent = loss;
-    document.getElementById('t-lr').textContent = lr;
+    document.getElementById('t-loss').textContent = loss.toFixed(3);
+    document.getElementById('t-lr').textContent = settled ? '3.0e-5' : lr;
     document.getElementById('t-toks').textContent = toks;
   }
 

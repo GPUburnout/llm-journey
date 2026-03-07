@@ -3,6 +3,7 @@ title: "The Results Are In (And My Wallet Is Empty)"
 date: 2026-02-06
 draft: false
 tags: ["results", "loss-curves", "lessons", "evaluation", "season-1"]
+description: "Final loss curves, compute costs, and 22 hard-won lessons from training GPT-2 from scratch. The honest results — including where the model still fails spectacularly."
 summary: "Final loss curves, the damage to my compute budget, and 22 lessons I paid dearly to learn."
 season: 1
 chapter: 5

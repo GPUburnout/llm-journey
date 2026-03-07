@@ -3,6 +3,7 @@ title: "Training Optimizations Deep Dive: How I Made the A100 Actually Work"
 date: 2026-02-07
 draft: false
 tags: ["optimization", "torch-compile", "AMP", "flash-attention", "vectorization", "deep-dive", "GPU", "performance", "season-1"]
+description: "The complete technical deep dive: torch.compile, Flash Attention, mixed precision, and every optimization that turned a 90-minute training run into 5 minutes. With code."
 summary: "The complete technical reference for achieving 16x speedup. Every optimization explained with code and diagrams."
 season: 1
 chapter: 6

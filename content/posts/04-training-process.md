@@ -3,6 +3,7 @@ title: "11 Training Challenges and How I Solved Them"
 date: 2026-02-02
 draft: false
 tags: ["training", "debugging", "optimization", "torch-compile", "AMP", "flash-attention", "Colab", "season-1"]
+description: "11 real training failures and fixes from building GPT-2 Small — config bugs, memory leaks, exploding gradients, and the optimization tricks that finally made it work."
 summary: "A comprehensive guide to every way I shot myself in the foot training GPT-2 Small. Learn from my pain."
 season: 1
 chapter: 4

@@ -3,6 +3,7 @@ title: "Scaling Up: From Tiny Model to GPT-2 Small"
 date: 2026-01-27
 draft: false
 tags: ["architecture", "transformer", "scaling", "infrastructure", "GPT-2", "season-1"]
+description: "Scaling from a toy transformer to GPT-2 Small with 134M parameters. Every architectural decision, layer by layer, with the infrastructure to match."
 summary: "How I went from 'cute toy model' to '134 million parameters that need an A100 to breathe.'"
 season: 1
 chapter: 3

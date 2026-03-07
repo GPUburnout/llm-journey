@@ -3,6 +3,7 @@ title: "Why I Decided to Build a Language Model from Scratch"
 date: 2026-01-15
 draft: false
 tags: ["intro", "motivation", "transformer", "phase-1", "season-1"]
+description: "A life scientist with zero ML background decides to build GPT-2 from scratch. This is the origin story — and the first mistake."
 summary: "Because apparently using someone else's model was too easy. Here's how I tortured myself by training GPT from scratch."
 season: 1
 chapter: 1

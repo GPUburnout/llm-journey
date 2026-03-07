@@ -5,6 +5,8 @@ draft: false
 tags: ["optimization", "torch-compile", "AMP", "flash-attention", "vectorization", "deep-dive", "GPU", "performance"]
 summary: "The complete technical reference for achieving 16x speedup. Every optimization explained with code and diagrams."
 weight: 6
+season: 1
+chapter: 6
 ---
 
 This is the deep technical reference for everything I learned the hard way. If you want the narrative version, see [11 Training Challenges](/posts/04-training-process) and [The Results](/posts/05-evaluation-and-output).

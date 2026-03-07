@@ -5,6 +5,8 @@ draft: false
 tags: ["architecture", "transformer", "scaling", "infrastructure", "GPT-2"]
 summary: "How I went from 'cute toy model' to '134 million parameters that need an A100 to breathe.'"
 weight: 3
+season: 1
+chapter: 3
 ---
 
 ## Phase 2: Building Infrastructure I'll Actually Need Later

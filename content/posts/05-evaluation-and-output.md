@@ -5,6 +5,8 @@ draft: false
 tags: ["results", "loss-curves", "lessons", "evaluation"]
 summary: "Final loss curves, the damage to my compute budget, and 22 lessons I paid dearly to learn."
 weight: 5
+season: 1
+chapter: 5
 ---
 
 So. After ~130 hours of GPU time, countless Colab disconnects, and one existential crisis about whether I should've just used a pretrained model... here's what I got.

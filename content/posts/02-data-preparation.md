@@ -3,8 +3,10 @@ title: "Data Preparation: Building a 12GB Training Corpus"
 date: 2026-01-22
 draft: false
 tags: ["data", "preprocessing", "tokenization", "BPE", "scaling"]
-summary: "Where I learned that 90% of ML is just cleaning data and crying about file sizes."
+summary: "How I built a 12GB ChatGPT-style conversational dataset and implemented BPE tokenization for efficient training."
 weight: 2
+season: 1
+chapter: 2
 ---
 
 You know that saying "garbage in, garbage out"? Turns out it applies to language models too. Who knew.

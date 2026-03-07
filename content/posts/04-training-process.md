@@ -5,6 +5,8 @@ draft: false
 tags: ["training", "debugging", "optimization", "torch-compile", "AMP", "flash-attention", "Colab"]
 summary: "A comprehensive guide to every way I shot myself in the foot training GPT-2 Small. Learn from my pain."
 weight: 4
+season: 1
+chapter: 4
 ---
 
 Training GPT-2 Small on 12GB of data sounded simple. It was not simple. Here are 11 ways the universe humbled me, and how I eventually fixed each one.

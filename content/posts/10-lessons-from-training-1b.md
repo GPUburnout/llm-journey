@@ -4,6 +4,8 @@ date: 2026-03-05
 draft: false
 tags: ["GPUburnout-1B", "lessons", "cloud-gpu", "cost-optimization", "infrastructure", "season-2"]
 description: "Infrastructure secrets, cost traps, and hard-won lessons from training a 1 billion parameter model from scratch on a $175 budget. The stuff that doesn't make it into research papers."
+season: 2
+chapter: 10
 ---
 
 ## The stuff that doesn't make it into papers

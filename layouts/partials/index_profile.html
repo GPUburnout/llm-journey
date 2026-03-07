@@ -20,8 +20,10 @@
           <span class="season">Season 1:</span> GPT-2 <span class="val">134M</span> · <span class="season">Season 2:</span> Llama <span class="val">1B</span>
         </div>
         <div class="hero-hook">$175 total · One GPU · Zero shortcuts</div>
+        <div class="hero-try">
+          <a href="https://huggingface.co/spaces/GPUburnout/gpuburnout-models" target="_blank" class="hero-btn highlight">Try the Models ▸</a>
+        </div>
         <div class="hero-buttons">
-          <a href="https://huggingface.co/spaces/GPUburnout/gpuburnout-models" target="_blank" class="hero-btn highlight">Try the Models</a>
           <a href="/posts/s2-01-from-134m-to-1b/" class="hero-btn primary">Start Season 2</a>
           <a href="/posts/01-why-build-a-language-model/" class="hero-btn secondary">Start Season 1</a>
         </div>
@@ -95,8 +97,13 @@
         letter-spacing: 2px;
         text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
       }
-      .hero-buttons {
+      .hero-try {
         margin-top: 20px;
+        text-align: center;
+        pointer-events: auto;
+      }
+      .hero-buttons {
+        margin-top: 12px;
         display: flex;
         gap: 16px;
         justify-content: center;

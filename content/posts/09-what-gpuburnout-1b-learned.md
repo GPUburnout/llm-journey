@@ -1,6 +1,6 @@
 ---
 title: "What GPUburnout-1B Actually Learned"
-date: 2026-03-03
+date: 2026-03-08
 draft: false
 tags: ["GPUburnout-1B", "benchmarks", "evaluation", "inference", "HellaSwag", "ARC", "MMLU", "season-2"]
 description: "Benchmark scores, text samples at every milestone, and an honest look at where a $175 model punches above its weight — and where it rolls dice."

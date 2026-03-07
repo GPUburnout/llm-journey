@@ -21,11 +21,11 @@ There's no shortage of tutorials that walk you through importing a pretrained mo
 
 So I decided to find out. I started with GPT-2 — trained it from scratch on Google Colab, fought with tokenizers, burned through GPU credits, and documented every mistake along the way.
 
-Now I'm scaling up to a 1 billion parameter Llama model. Same philosophy: build it myself, break things, write about what I learn.
+Then I trained a 1 billion parameter Llama-style model from scratch on a single A100 for $175 total. 90,000 steps, 30 billion tokens, final loss 2.494. It scores 47.1% on ARC-Easy and 28.8% on HellaSwag — not bad for a model that cost less than a nice dinner.
 
 ## What You'll Find Here
 
-Honest documentation of training language models from scratch — the kind of stuff that doesn't make it into research papers. Real cost breakdowns. Actual loss curves. The 11 things that went wrong before anything went right. Training optimizations that took my run from 90 minutes to 21 minutes.
+Honest documentation of training language models from scratch — the kind of stuff that doesn't make it into research papers. Real cost breakdowns ($175 for 1B parameters). Actual loss curves. The 11 things that went wrong before anything went right. Training optimizations that took my run from 90 minutes to 21 minutes. And the infrastructure lessons that nobody talks about.
 
 No hand-waving, no "left as an exercise for the reader."
 

@@ -1,6 +1,6 @@
 ---
 title: "10 Things I Learned Training a 1B Parameter Model That Nobody Talks About"
-date: 2026-03-14
+date: 2026-03-07
 draft: false
 tags: ["GPUburnout-1B", "lessons", "cloud-gpu", "cost-optimization", "infrastructure", "season-2"]
 description: "Infrastructure secrets, cost traps, and hard-won lessons from training a 1 billion parameter model from scratch on a $175 budget. The stuff that doesn't make it into research papers."

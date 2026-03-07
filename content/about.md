@@ -39,5 +39,7 @@ That's what this blog is about.
 
 ## Find Me Elsewhere
 
+- **Blog Source**: [github.com/GPUburnout/llm-journey](https://github.com/GPUburnout/llm-journey)
+- **GPT-2 Training Code**: [github.com/GPUburnout/gpt2-from-scratch](https://github.com/GPUburnout/gpt2-from-scratch)
 - **GitHub**: [github.com/GPUburnout](https://github.com/GPUburnout)
 - **LinkedIn**: [linkedin.com/in/jun-park-b83178a5](https://www.linkedin.com/in/jun-park-b83178a5/)

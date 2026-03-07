@@ -2,7 +2,7 @@
 title: "Training Optimizations Deep Dive: How I Made the A100 Actually Work"
 date: 2026-02-07
 draft: false
-tags: ["optimization", "torch-compile", "AMP", "flash-attention", "vectorization", "deep-dive", "GPU", "performance"]
+tags: ["optimization", "torch-compile", "AMP", "flash-attention", "vectorization", "deep-dive", "GPU", "performance", "season-1"]
 summary: "The complete technical reference for achieving 16x speedup. Every optimization explained with code and diagrams."
 weight: 6
 season: 1

@@ -2,7 +2,7 @@
 title: "Data Preparation: Building a 12GB Training Corpus"
 date: 2026-01-22
 draft: false
-tags: ["data", "preprocessing", "tokenization", "BPE", "scaling"]
+tags: ["data", "preprocessing", "tokenization", "BPE", "scaling", "season-1"]
 summary: "How I built a 12GB ChatGPT-style conversational dataset and implemented BPE tokenization for efficient training."
 weight: 2
 season: 1

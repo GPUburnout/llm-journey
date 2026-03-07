@@ -17,7 +17,7 @@
     {{- end -}}
 
     {{- with .Params.season }}
-    {{- print "&nbsp;&raquo;&nbsp;" | safeHTML -}}<span class="breadcrumb-season">Season {{ . }}</span>
+    {{- print "&nbsp;&raquo;&nbsp;" | safeHTML -}}<a class="breadcrumb-season" href="{{ printf "/tags/season-%d/" (int .) | absLangURL }}">Season {{ . }}</a>
     {{- end }}
     {{- with $.Params.chapter }}
     {{- print "&nbsp;&raquo;&nbsp;" | safeHTML -}}<span class="breadcrumb-chapter">Ch. {{ . }}</span>

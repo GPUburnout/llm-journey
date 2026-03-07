@@ -2,7 +2,7 @@
 title: "11 Training Challenges and How I Solved Them"
 date: 2026-02-02
 draft: false
-tags: ["training", "debugging", "optimization", "torch-compile", "AMP", "flash-attention", "Colab"]
+tags: ["training", "debugging", "optimization", "torch-compile", "AMP", "flash-attention", "Colab", "season-1"]
 summary: "A comprehensive guide to every way I shot myself in the foot training GPT-2 Small. Learn from my pain."
 weight: 4
 season: 1

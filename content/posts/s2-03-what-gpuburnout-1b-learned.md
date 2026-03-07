@@ -143,10 +143,10 @@ I'm still deciding. The tokens are still waiting. They're very patient.
 
 Next and final post of Season 2: the lessons. Everything I learned about training a model from scratch that nobody told me and nobody writes about — from the revelation that cloud GPU pricing pages are works of creative fiction to the discovery that the biggest optimizations are always free and always embarrassingly obvious in hindsight.
 
-**Next post: [10 Things I Learned Training a 1B Parameter Model That Nobody Talks About.](/posts/10-lessons-from-training-1b/)**
+**Next post: [10 Things I Learned Training a 1B Parameter Model That Nobody Talks About.](/posts/s2-04-lessons-from-training-1b/)**
 
 ---
 
-*This is Post 9 of an ongoing series. [Post 7](/posts/07-from-134m-to-1b/) covers architecture and dataset. [Post 8](/posts/08-the-175-dollar-experiment/) covers the training run and costs.*
+*This is Chapter 3 of Season 2. [Chapter 1](/posts/s2-01-from-134m-to-1b/) covers architecture and dataset. [Chapter 2](/posts/s2-02-the-175-dollar-experiment/) covers the training run and costs.*
 
 *Follow along: [GitHub](https://github.com/GPUburnout) · [RSS](/index.xml)*

@@ -179,7 +179,7 @@ Thanks for following along.
 
 ---
 
-*This is the final post of Season 2. The full series: [Post 7 — Architecture](/posts/07-from-134m-to-1b/) · [Post 8 — The $175 Experiment](/posts/08-the-175-dollar-experiment/) · [Post 9 — Benchmarks](/posts/09-what-gpuburnout-1b-learned/) · Post 10 — Lessons (you are here).*
+*This is the final chapter of Season 2. The full series: [Ch. 1 — Architecture](/posts/s2-01-from-134m-to-1b/) · [Ch. 2 — The $175 Experiment](/posts/s2-02-the-175-dollar-experiment/) · [Ch. 3 — Benchmarks](/posts/s2-03-what-gpuburnout-1b-learned/) · Ch. 4 — Lessons (you are here).*
 
 *Season 1 (GPT-2, 134M parameters): [Start here.](/posts/01-why-build-a-language-model/)*
 

@@ -102,7 +102,7 @@ Total planned budget: under $200 for a from-scratch 1B model. Whether that's a l
 
 The training is done. The checkpoints are saved. The loss curve tells an interesting story — one that involves beating my own predictions, discovering that cheaper GPUs aren't always cheaper, and making the call to stop training before the original plan said to.
 
-**Next post: [The $175 Experiment — Training GPUburnout-1B on a Single GPU.](/posts/08-the-175-dollar-experiment/)**
+**Next post: [The $175 Experiment — Training GPUburnout-1B on a Single GPU.](/posts/s2-02-the-175-dollar-experiment/)**
 
 I'll walk through every phase, every dollar, and every surprise — including the text samples that show a model going from random noise to citing scientific journals.
 

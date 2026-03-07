@@ -150,10 +150,10 @@ Next post, I put GPUburnout-1B under the microscope: benchmark scores against pu
 
 Spoiler: there's one benchmark where it nearly matches a model trained on 25x more data. And there are others where it's basically rolling dice. Both of those results tell you something important — and neither is what I expected.
 
-**Next post: [What GPUburnout-1B Actually Learned — Benchmarks, Samples, and Honest Numbers.](/posts/09-what-gpuburnout-1b-learned/)**
+**Next post: [What GPUburnout-1B Actually Learned — Benchmarks, Samples, and Honest Numbers.](/posts/s2-03-what-gpuburnout-1b-learned/)**
 
 ---
 
-*This is Post 8 of an ongoing series documenting my journey building language models from scratch. [Post 7](/posts/07-from-134m-to-1b/) covers the architecture and dataset decisions that got us here.*
+*This is Chapter 2 of Season 2. [Chapter 1](/posts/s2-01-from-134m-to-1b/) covers the architecture and dataset decisions that got us here.*
 
 *Follow along: [GitHub](https://github.com/GPUburnout) · [RSS](/index.xml)*

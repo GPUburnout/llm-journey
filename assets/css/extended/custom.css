@@ -104,6 +104,16 @@ html {
   margin-bottom: 4px;
 }
 
+.nav-season-label {
+  display: inline-block;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: #6b7280;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
 .breadcrumb-season,
 .breadcrumb-chapter {
   color: #22d3ee;

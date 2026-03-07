@@ -5,7 +5,7 @@ draft: false
 tags: ["GPUburnout-1B", "training", "loss-curves", "cost-analysis", "A100", "season-2"]
 description: "I trained a 1 billion parameter language model from scratch on a single A100 for $175. Here's every phase, every dollar, and every surprise — including the moment it started confidently citing journals that don't exist."
 season: 2
-chapter: 8
+chapter: 2
 ---
 
 ## The short version

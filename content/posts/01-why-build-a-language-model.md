@@ -4,7 +4,6 @@ date: 2026-01-15
 draft: false
 tags: ["intro", "motivation", "transformer", "phase-1", "season-1"]
 summary: "Because apparently using someone else's model was too easy. Here's how I tortured myself by training GPT from scratch."
-weight: 1
 season: 1
 chapter: 1
 ---

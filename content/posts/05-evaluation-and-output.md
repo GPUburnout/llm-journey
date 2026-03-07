@@ -4,7 +4,6 @@ date: 2026-02-06
 draft: false
 tags: ["results", "loss-curves", "lessons", "evaluation", "season-1"]
 summary: "Final loss curves, the damage to my compute budget, and 22 lessons I paid dearly to learn."
-weight: 5
 season: 1
 chapter: 5
 ---

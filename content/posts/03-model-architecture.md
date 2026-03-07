@@ -4,7 +4,6 @@ date: 2026-01-27
 draft: false
 tags: ["architecture", "transformer", "scaling", "infrastructure", "GPT-2", "season-1"]
 summary: "How I went from 'cute toy model' to '134 million parameters that need an A100 to breathe.'"
-weight: 3
 season: 1
 chapter: 3
 ---

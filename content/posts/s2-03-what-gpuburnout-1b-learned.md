@@ -139,14 +139,18 @@ Would that be worth ~$100? For the blog content? Absolutely — "matches Pythia 
 
 I'm still deciding. The tokens are still waiting. They're very patient.
 
+*Update: I decided. [I spent another $68 answering my own question.](/posts/s2-05-chinchilla-answer/) Spoiler: every one of these predictions was wrong.*
+
 ## What's Next
 
-Next and final post of Season 2: the lessons. Everything I learned about training a model from scratch that nobody told me and nobody writes about — from the revelation that cloud GPU pricing pages are works of creative fiction to the discovery that the biggest optimizations are always free and always embarrassingly obvious in hindsight.
+Next up: the lessons. Everything I learned about training a model from scratch that nobody told me and nobody writes about — from the revelation that cloud GPU pricing pages are works of creative fiction to the discovery that the biggest optimizations are always free and always embarrassingly obvious in hindsight.
 
 **Next post: [10 Things I Learned Training a 1B Parameter Model That Nobody Talks About.](/posts/s2-04-lessons-from-training-1b/)**
 
+**Then: [I Spent Another $68 Answering My Own Question](/posts/s2-05-chinchilla-answer/) — pushing to Chinchilla-optimal and finding out the benchmarks lied.**
+
 ---
 
-*This is Chapter 3 of Season 2. [Chapter 1](/posts/s2-01-from-134m-to-1b/) covers architecture and dataset. [Chapter 2](/posts/s2-02-the-175-dollar-experiment/) covers the training run and costs.*
+*This is Chapter 3 of Season 2. [Chapter 1](/posts/s2-01-from-134m-to-1b/) covers architecture and dataset. [Chapter 2](/posts/s2-02-the-175-dollar-experiment/) covers the training run and costs. [Chapter 5](/posts/s2-05-chinchilla-answer/) answers the Chinchilla question.*
 
 *Follow along: [GitHub](https://github.com/GPUburnout) · [RSS](/index.xml)*

@@ -129,7 +129,7 @@ At step 10,000, GPUburnout-1B attempted a fibonacci function and produced dashes
 
 Fibonacci requires tracking a recursive call stack, maintaining variable state across function calls, and reasoning about arithmetic. A 1B parameter model doesn't have the representational capacity for that. It's not a homework problem — it's a brain size problem. The model needs more layers, more dimensions, more parameters. A bigger brain, not a longer school day.
 
-This informed my biggest strategic decision: **Season 3 is about teaching GPUburnout-1B to hold a conversation (SFT + alignment), not about training it longer.** And Season 4, when it comes, scales to 2B parameters — because that's where fibonacci might actually start working. *Might.*
+*Update: I did end up [pushing to Chinchilla-optimal](/posts/s2-05-chinchilla-answer/) — and the benchmarks proved this point exactly. The fibonacci function still doesn't work. The model got better at what it already could do, but it didn't learn anything fundamentally new.* The path forward is more parameters — scaling to 2B, where fibonacci might actually start working. *Might.*
 
 More data makes the model better at what it *can* do. More parameters expand what it *can* do. If your model is failing at something fundamental, throwing more tokens at it is like studying harder for an exam that's above your grade level. Admirable work ethic. Wrong strategy.
 
@@ -179,7 +179,7 @@ Thanks for following along.
 
 ---
 
-*This is the final chapter of Season 2. The full series: [Ch. 1 — Architecture](/posts/s2-01-from-134m-to-1b/) · [Ch. 2 — The $175 Experiment](/posts/s2-02-the-175-dollar-experiment/) · [Ch. 3 — Benchmarks](/posts/s2-03-what-gpuburnout-1b-learned/) · Ch. 4 — Lessons (you are here).*
+*This is Chapter 4 of Season 2. The full series: [Ch. 1 — Architecture](/posts/s2-01-from-134m-to-1b/) · [Ch. 2 — The $175 Experiment](/posts/s2-02-the-175-dollar-experiment/) · [Ch. 3 — Benchmarks](/posts/s2-03-what-gpuburnout-1b-learned/) · Ch. 4 — Lessons (you are here) · [Ch. 5 — The Chinchilla Answer](/posts/s2-05-chinchilla-answer/).*
 
 *Season 1 (GPT-2, 134M parameters): [Start here.](/posts/01-why-build-a-language-model/)*
 

@@ -110,6 +110,8 @@ The most unsettling output came from a science prompt that generated text refere
 | Storage | ~$3 |
 | **Total** | **~$175** |
 
+*Update: I ended up pushing to Chinchilla-optimal. [See S2-05 for the full $243 story.](/posts/s2-05-chinchilla-answer/)*
+
 For $175 I got a model that writes about breast cancer genetics and attempts recursive Python functions. That's less than my monthly cloud bill and roughly what I'd spend on a nice anniversary dinner — which, coincidentally, I now owe my wife for all the evenings I spent watching a loss curve instead of being a functional human being.
 
 ## The Diminishing Returns Problem

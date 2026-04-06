@@ -3,7 +3,7 @@ title: "The Results Are In (And My Wallet Is Empty)"
 date: 2026-02-06
 draft: false
 tags: ["results", "loss-curves", "lessons", "evaluation", "season-1"]
-description: "Final loss curves, compute costs, and 22 hard-won lessons from training GPT-2 from scratch. The honest results — including where the model still fails spectacularly."
+description: "Final loss curves, compute costs, and 22 hard-won lessons from training GPT-2 from scratch. The honest results - including where the model still fails spectacularly."
 summary: "Final loss curves, the damage to my compute budget, and 22 lessons I paid dearly to learn."
 season: 1
 chapter: 5
@@ -35,7 +35,7 @@ Loss
                   Epoch
 ```
 
-Loss plateaued around 3.0 — that's as good as it gets for 134M params on this dataset.
+Loss plateaued around 3.0 - that's as good as it gets for 134M params on this dataset.
 
 ### The Epoch-by-Epoch Damage Report
 
@@ -91,7 +91,7 @@ Not Shakespeare, and sometimes the model drifts into training data (the joys of 
 
 ## Try It Yourself
 
-Don't take my word for it. Here's the actual model — pick a checkpoint and see how it generates:
+Don't take my word for it. Here's the actual model - pick a checkpoint and see how it generates:
 
 <iframe
 	src="https://gpuburnout-gpt2-from-scratch.hf.space"
@@ -114,13 +114,13 @@ Don't take my word for it. Here's the actual model — pick a checkpoint and see
 
 **Session 2 (Epochs 4-5):** Getting Smarter
 - RAM preload + vectorization + torch.compile + AMP
-- 0.225s/step — 7x faster
+- 0.225s/step - 7x faster
 - ~10 hours for 2 epochs
 - GPU starting to earn its keep
 
 **Session 3 (Epochs 6-11):** Full Speed Ahead
 - Added Flash Attention (PyTorch 2.0+)
-- 0.1s/step — **16x faster than baseline**
+- 0.1s/step - **16x faster than baseline**
 - ~15 hours for 6 epochs
 - GPU finally working at full power
 
@@ -188,7 +188,7 @@ Cool. Cool cool cool.
 ### Debugging (Check These First)
 
 19. **Check dtypes.** Then check again. Then `.long()` anyway.
-20. **Configs must match exactly.** SEQ_LEN, vocab_size, embed_dim — one mismatch = cryptic error.
+20. **Configs must match exactly.** SEQ_LEN, vocab_size, embed_dim - one mismatch = cryptic error.
 21. **Verify files exist.** Before writing code that loads them. Novel concept.
 
 ### Documentation (Future You Is Dumb)
@@ -199,11 +199,11 @@ Cool. Cool cool cool.
 
 ## What's Next
 
-1. ~~**Finish epoch 10**~~ — Done! Went to epoch 11 for good measure.
-2. ~~**Test generation quality**~~ — It produces coherent text! See above.
-3. **Consider GPT-2 Medium** — 355M params. Because I'm a glutton for punishment.
-4. **Fine-tuning experiments** — Make it useful for something specific.
-5. ~~**Release on GitHub/HuggingFace**~~ — Done! [github.com/GPUburnout/gpt2-from-scratch](https://github.com/GPUburnout/gpt2-from-scratch)
+1. ~~**Finish epoch 10**~~ - Done! Went to epoch 11 for good measure.
+2. ~~**Test generation quality**~~ - It produces coherent text! See above.
+3. **Consider GPT-2 Medium** - 355M params. Because I'm a glutton for punishment.
+4. **Fine-tuning experiments** - Make it useful for something specific.
+5. ~~**Release on GitHub/HuggingFace**~~ - Done! [github.com/GPUburnout/gpt2-from-scratch](https://github.com/GPUburnout/gpt2-from-scratch)
 
 ---
 
@@ -211,7 +211,7 @@ Cool. Cool cool cool.
 
 Was this worth it? Honestly? Yes.
 
-Not because I built something amazing — GPT-2 Small is table stakes in 2026. But because I finally *understand* the stack. The papers make sense now. When something breaks, I know where to look. When someone says "just use torch.compile," I know what it's doing under the hood.
+Not because I built something amazing - GPT-2 Small is table stakes in 2026. But because I finally *understand* the stack. The papers make sense now. When something breaks, I know where to look. When someone says "just use torch.compile," I know what it's doing under the hood.
 
 The gap between "I've read the attention paper" and "I've debugged tensor shapes at 2 AM" is massive. This project closed that gap.
 

@@ -8,27 +8,27 @@ season: 4
 chapter: 3
 ---
 
-Season 3: four DPO configurations on the 1B. Best result was 4/8 clean. Worst was 7/8 garbage - more training literally made it dumber.
+Season 3: four DPO configurations on the 1B. Best: 4/8 clean. Worst: 7/8 garbage. More training literally made the model dumber. I had receipts.
 
-Season 4: same technique, similar hyperparameters, on the 2B. Result: **7/8 clean.**
+Season 4: same technique, similar hyperparameters, on the 2B. Result: **7/8 clean.** First try. No suffering necessary.
 
-Same method. Different foundation. Completely different outcome. That's the whole story of Season 4 in one comparison. But the details are fun, so here they are.
+Same method. Different foundation. Completely different outcome. That's the entire moral of Season 4 in one A/B test. I could end the post here. I won't, because the details are too good to skip.
 
 ---
 
 ## Step 1: SFT
 
-Same setup as the 1B runs. SlimOrca 50K, LoRA r=16/alpha=32, 1 epoch, A100 80GB. Same dataset that failed to fix the 1B - now running on a clean base.
+Same setup as the 1B. SlimOrca 50K, LoRA r=16/alpha=32, 1 epoch, A100 80GB. The *exact* dataset that failed to fix the 1B, now running on a clean base. I changed nothing. Not one hyperparameter. I wanted to see what happened.
 
-SlimOrca on the 1B produced garbage. SlimOrca on the clean 2B produced a functional chat model. The dataset didn't change. The foundation did.
+Same dataset. Same hyperparameters. The 1B turned into a haunted slot machine. The 2B turned into a functional chat model. The dataset didn't change. The foundation did. That's the whole post in two sentences. (Also that's why pretraining matters more than alignment, but that's harder to fit on a t-shirt.)
 
 ---
 
 ## Step 2: DPO
 
-1,078 preference pairs across 10 categories. (Started with 1,200 but lost 122 to a file overwrite accident. Yes, I overwrote my own training data. No, I don't want to talk about it.) Beta 0.1, lr 5e-7, 1 epoch, LoRA same as SFT.
+1,078 preference pairs across 10 categories. (Started with 1,200 but lost 122 to a file overwrite accident. Yes, I overwrote my own training data. No, I do not want to talk about it. The ones that survived have my eternal gratitude.) Beta 0.1, lr 5e-7, 1 epoch, LoRA same as SFT.
 
-Training time: ~2 minutes on A100. The entire alignment step - the thing that's supposed to make the model "safe" and "helpful" - took less time than making coffee.
+Training time: **~2 minutes** on the A100. The entire alignment step - the thing frontier labs spend millions of dollars and entire research teams on - took less time than brewing a pot of coffee. Mine cost about 5 cents. The economics are so absurd I had to recheck the wandb dashboard twice.
 
 ---
 
@@ -45,7 +45,7 @@ Training time: ~2 minutes on A100. The entire alignment step - the thing that's 
 | Explain the water cycle to a 10-year-old | CLEAN |
 | What is the difference between a virus and a bacterium? | CLEAN |
 
-**7/8 clean.** The one failure? The Python code prompt. Of course it's the Python prompt. Python-Edu contamination, even after removing 660 documents, left enough residual signal that code generation is still the weakest domain. The model didn't learn a new garbage pattern - it's the same old one, just much harder to trigger. Like a reformed smoker who still craves one at parties.
+**7/8 clean.** The one failure? The Python code prompt. *Of course* it's the Python prompt. Of all the prompts to fail on, the model picked the one most likely to remind it of its traumatic past. Python-Edu was the source of contamination, and even after removing 660 of its worst offenders, the model's relationship with Python remains complicated. It's the exact same old garbage pattern from the 1B - just way harder to trigger now. Like a reformed smoker who only relapses at weddings.
 
 For comparison:
 
@@ -74,7 +74,7 @@ All three 2B models, same 8 prompts, temperature 0.7:
 | Water jugs | Incoherent | Wrong, clean | Wrong, clean | Tie |
 | Ethics | Incoherent | Good | Good | Tie |
 
-DPO doesn't make the model smarter. It still can't multiply 247 by 18. (Neither can most humans without a calculator, to be fair.) But it makes the model *cleaner*. When it runs out of coherent things to say, it stops instead of collapsing into nonsense. That's the alignment win - not brilliance, just knowing when to shut up. A skill some humans could also benefit from.
+DPO doesn't make the model smarter. It still can't multiply 247 by 18. (To be fair, neither can most humans without a calculator. The model and I are even on this one.) What DPO does is make the model *cleaner*. When the model runs out of coherent things to say, it stops instead of collapsing into nonsense. That's the alignment win - not brilliance, just *knowing when to shut up*. A skill plenty of humans, frontier chatbots, and certain politicians could also benefit from.
 
 ---
 
@@ -85,31 +85,31 @@ DPO doesn't make the model smarter. It still can't multiply 247 by 18. (Neither 
 | TruthfulQA MC2 | 47.6% | **42.4%** | 41.5% | 41.1% |
 | IFEval strict | - | **17.0%** | 15.5% | 14.7% |
 
-DPO scores *lower* than Base on TruthfulQA. That's the **alignment tax** - you trade benchmark points for actually being useful. Every aligned model pays it. But even after paying, the 2B DPO beats every 1B variant on both benchmarks.
+DPO scores *lower* than Base on TruthfulQA. That's the **alignment tax** - you trade benchmark points for actually being useful in conversation. Every aligned model pays it. Even after paying, the 2B DPO beats every 1B variant on both benchmarks. Tax included.
 
 ---
 
 ## Why It Worked
 
-Same technique. Failed four times on the 1B, worked first try on the 2B. The difference isn't DPO - it's what's underneath.
+Same technique. Failed four times on the 1B. Worked first try on the 2B. The difference isn't DPO. It's what's underneath DPO.
 
-The 1B had garbage attractors with 21 billion tokens of momentum. DPO on the 1B was arm-wrestling a freight train. DPO on the 2B is shaping preferences on a clean slate. One of those fights you can win. The other one you can't.
+The 1B had garbage attractors with 21 billion tokens of momentum. DPO on the 1B was arm-wrestling a freight train. DPO on the 2B is nudging preferences on a clean slate. One of those is a fight you can win. The other one is a fight that ends with you under the train, wondering where you went wrong.
 
-**Alignment is downstream of pretraining. Always.**
+**Alignment is downstream of pretraining. Always. Carve it on something.**
 
 ---
 
 ## Where This Leaves Us
 
-GPUburnout-2B-75K-Chat-DPO is live on HuggingFace. 7/8 clean. Built for roughly $193 total - $183 pretraining, ~$10 for SFT and DPO combined. That's less than what I spent on GPU time debugging the 1B's garbage problem.
+GPUburnout-2B-75K-Chat-DPO is live on HuggingFace. 7/8 clean. Built for roughly **$193 total** - $183 pretraining, ~$10 for SFT and DPO combined. That's less than I spent debugging the 1B's garbage problem. The 2B cost less than the *autopsy* of the 1B. Let that sit for a second.
 
 Season 4 ends with a working model and a fork in the road:
 
 **Option 1:** Scale to 3B. More parameters, PubMed data in the mix, the beginning of BioLlama.
 
-**Option 2:** Build something useful with the 2B. RAG over biomedical literature. A domain-specific assistant that actually does a job.
+**Option 2:** Build something useful with the 2B. RAG over biomedical literature. A domain-specific assistant that actually does a job instead of just looking pretty on a leaderboard.
 
-Both paths are on the table. Season 5 decides.
+Both paths are on the table. Season 5 decides which one bankrupts me first.
 
 ---
 

@@ -8,9 +8,9 @@ season: 4
 chapter: 2
 ---
 
-The 1B taught me that pretraining data quality matters more than anything that comes after. Clean before you tokenize, or spend weeks trying to undo what you can't undo.
+The 1B taught me that pretraining data quality matters more than anything that comes after it. Clean before you tokenize, or spend weeks trying to undo what you can't undo.
 
-The 2B is the experiment that tests whether that's actually true. Same architecture family, same training code, same evaluation suite. Different data - 600,000 documents scanned, 660 contaminated ones removed, everything re-tokenized from scratch. If the hypothesis is right, the 2B should produce zero garbage even before SFT. If it's wrong, I have a $183 data point proving it.
+The 2B is the experiment that tests whether I actually learned that lesson, or whether I just *said* I learned it. Same architecture family, same training code, same evaluation suite. Different data - 600,000 documents scanned, 660 contaminated ones deleted, everything re-tokenized from scratch. If the hypothesis is right, the 2B should produce zero garbage tokens even before SFT runs. If it's wrong, congratulations, I just bought a $183 souvenir. Either way, somebody learns something.
 
 ---
 
@@ -24,17 +24,19 @@ The 2B is the experiment that tests whether that's actually true. Same architect
 | GQA heads | 32Q / 8KV | 36Q / 9KV |
 | d_ff | 8192 | 9216 |
 
-The 2B was *grown* from the 1B-160K checkpoint, not trained from scratch. Take the existing model, bolt on 6 new transformer layers, widen everything, copy trained weights into the new structure, pad new dimensions with small noise. The model starts with the 1B's knowledge already in there and gains capacity to hold more.
+The 2B was *grown* from the 1B-160K checkpoint, not trained from scratch. Take the existing model, bolt on 6 new transformer layers, widen everything, copy the trained weights into the new structure, pad the new dimensions with small noise. Frankenstein's transformer. The model starts with the 1B's brain already loaded and gets a few new rooms in the attic for storage.
 
-New layers get initialized as copies of their neighbors rather than random weights. A copied layer starts functional from step 0. A random layer starts as noise and wastes thousands of steps just becoming useful. Copying buys a head start and a smoother loss curve. Free money - my favorite kind of optimization.
+New layers get initialized as copies of their neighbors instead of random weights. A copied layer is functional from step 0. A random layer is pure noise and wastes thousands of steps just learning how to be a layer instead of, you know, computing things. Copying is free money. My favorite kind of optimization, right after "did you remember to turn it on?"
 
 ---
 
 ## The Mistake We Paid For
 
-Every parameter got the same learning rate - 3e-4. Sounds reasonable until you realize the existing layers already converged over 160,000 steps while the new layers are starting from near-zero. Same aggressive learning rate on both means the old layers overshoot their optimum while the new layers are still warming up.
+Every parameter got the same learning rate: 3e-4. Sounds reasonable until you remember the old layers already spent 160,000 steps carefully finding their happy place, while the new layers are showing up to their first day of work with no idea where the bathroom is. Same aggressive learning rate on both means the old layers go skidding off their optimum while the new layers are still trying to figure out which way is up.
 
-Result: loss spiked from 2.446 to 2.80. A 14% temporary forgetting of everything the 1B learned. It recovered, but those recovery steps cost money and time. The fix is obvious in hindsight - separate learning rates for existing layers (1e-5) vs new layers (3e-4). Didn't implement it. Filed under "next time." There's always a "next time" list, and it's always longer than the "this time" list.
+Result: loss spiked from 2.446 to 2.80. A 14% temporary case of amnesia. The 1B's months of training, briefly forgotten, like a senior employee getting a concussion. It recovered. But those recovery steps cost real money and real time.
+
+The fix is obvious in hindsight - separate learning rates for old layers (1e-5) and new layers (3e-4). Did I implement it? No. Filed under "next time." The "next time" list is always longer than the "this time" list. That's how it stays the "next time" list.
 
 ---
 
@@ -50,9 +52,9 @@ Single A100 SXM 80GB on RunPod, $1.49/hr. Four phases to 75,000 steps:
 | Phase 3 | 10K → 30K | 2.495 | 2.510 | 15,730 tok/s |
 | Phase 4 | 30K → 75K | **2.406** | **2.371** | 15,960 tok/s |
 
-By step 30K, the 2B had already matched the 1B-90K's final loss (2.495 vs 2.494) - with only 3.9B tokens of post-expansion training. The growth was working. The 1B's knowledge was still in there, and the extra capacity was already paying off.
+By step 30K, the 2B had already matched the 1B-90K's final loss (2.495 vs 2.494) - with only 3.9B tokens of post-expansion training. The growth was working. The 1B's knowledge was still in there, and the extra capacity was already paying rent.
 
-**Total cost: ~$183.** That includes ~$15 wasted on a disk-full crash mid-training because I didn't set up checkpoint rotation properly. Classic.
+**Total cost: ~$183.** Including ~$15 wasted on a disk-full crash mid-training because I didn't set up checkpoint rotation. Classic. The pod ran out of disk space the same way I run out of patience: gradually, then all at once. The 2B and I both learned things that day.
 
 ---
 
@@ -65,9 +67,9 @@ By step 30K, the 2B had already matched the 1B-90K's final loss (2.495 vs 2.494)
 | ARC-Challenge | 22.5% | 23.3% | -0.8% |
 | MMLU | 23.0% | 23.0% | +0.0% |
 
-Flat. Again. Four models, same story: **0-shot benchmarks are useless at sub-3B scale.** They're like judging a restaurant by counting the chairs.
+Flat. Again. Four models, same story: **0-shot benchmarks are useless at sub-3B scale.** They're like judging a restaurant by counting the chairs. Sure, more chairs is more capacity. But are the chairs comfortable? Is the food good? Are people having a good time? The chair count cannot tell you.
 
-Meanwhile, the 2B-30K was already citing specific genes (FOXP3), journals (Journal of Bacteriology), and writing 150-token stories with named characters and sustained plot. The benchmarks can't see any of that.
+Meanwhile, the 2B-30K was already citing specific genes (FOXP3), real journals (Journal of Bacteriology), and writing 150-token stories with named characters and actual plot. None of which the benchmarks can see, because the benchmarks are too busy counting chairs.
 
 ---
 
@@ -79,11 +81,11 @@ I ran the same 8 prompts that exposed the garbage tokens in the 1B. The 2B base 
 
 Not fewer. None. Zero.
 
-The same prompts that made the 1B collapse into `PersonX` and `AndroidRuntime` produced coherent (if incomplete) continuations from the 2B. It still fails at math. It still runs out of things to say. But when it runs out, it *stops* instead of falling into an attractor.
+The same prompts that made the 1B vomit `PersonX` and `AndroidRuntime` produced coherent (if incomplete) continuations from the 2B. It still fails at math. It still runs out of things to say sometimes. But when it runs out, it *stops*. It doesn't fall into an attractor and start chanting `fefefe` like it's at a very weird football game.
 
-The hypothesis holds. The contamination was in the data. The data is clean. The model is clean.
+The hypothesis holds. The contamination was in the data. The data is clean. The model is clean. The bouncer worked.
 
-Now it needs to learn to have a conversation.
+Now it just needs to learn how to have a conversation.
 
 ---
 

@@ -29,7 +29,7 @@ theme = 'PaperMod'
   [params.profileMode]
     enabled = true
     title = "Building LLMs From Scratch"
-    subtitle = "A life scientist who got curious about transformers — the neural network kind, not the protein kind — and decided to build one from scratch."
+    subtitle = "A life scientist who got curious about transformers - the neural network kind, not the protein kind - and decided to build one from scratch."
     imageUrl = "https://raw.githubusercontent.com/googlefonts/noto-emoji/main/svg/emoji_u1f916.svg"
     imageWidth = 140
     imageHeight = 140

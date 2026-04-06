@@ -8,23 +8,23 @@ season: 3
 chapter: 1
 ---
 
-At the end of Season 2, I had a working 1B parameter language model.
+At the end of Season 2, I had a "working" 1B parameter language model.
 
-I use the word "working" loosely. It could complete sentences. It knew Paris was a city. Given the right prompt, it would produce coherent paragraphs about single-cell RNA sequencing with confidently fabricated citations. As base models go, it was functional. As useful tools go, it was a paperweight that costs electricity.
+The scare quotes are doing some heavy lifting. Yes, it could complete sentences. Yes, it knew Paris was a city. Yes, it could write paragraphs about single-cell RNA sequencing with journal citations that looked real and were absolutely not. Ask it the capital of France and it would confidently answer "the currency in the money is dollar and the currency is dollar and the currency is the euro and euro." Technically not wrong about the euro. Wildly wrong about everything else. As base models go, it was functional. As useful tools go, it was a paperweight that costs electricity.
 
 The question I left Season 2 with: *can it be made useful?*
 
-No. But figuring that out took nine experiments and several weeks I'll never get back.
+No. But it took nine experiments to find that out, and Season 3 is the body count.
 
 ---
 
 ## The Plan: SFT
 
-A base model isn't a chat model. Ask it a question and it'll complete your question, not answer it. It thinks you're writing a document, not having a conversation.
+A base model isn't a chat model. Ask it a question and it completes your question instead of answering it. It thinks you're typing a document and helpfully fills in the next word. Great for autocomplete. Terrible for conversation. Imagine asking a friend "how was your weekend?" and they reply "?" and walk away.
 
-The standard fix is **Supervised Fine-Tuning (SFT)** - train it on thousands of (instruction, response) pairs so it learns what "being helpful" looks like. This is how every useful open-source model got its personality.
+The fix is **Supervised Fine-Tuning (SFT)** - feed the model thousands of (instruction, response) pairs until it figures out what "helpful" looks like. This is how every chatbot you've ever used got its personality. It's also how every chatbot you've ever used got its annoying tics.
 
-I ran SFT with **SlimOrca** (50K examples, LoRA fine-tuning) on both the 90K and 160K base models. The question from Season 2: does the extra $68 of Chinchilla pretraining actually matter for chat quality?
+I ran SFT with **SlimOrca** (50K examples, LoRA) on both the 90K and 160K base models. Real question: did that extra $68 of Chinchilla pretraining from Season 2 actually buy me anything? Or did I light $68 on fire to find out?
 
 ---
 
@@ -35,9 +35,9 @@ I ran SFT with **SlimOrca** (50K examples, LoRA fine-tuning) on both the 90K and
 | TruthfulQA MC2 | 41.53% | 41.08% |
 | IFEval strict | 15.47% | 14.75% |
 
-Flat. Statistical noise. The model that trained 70,000 extra steps on 9 billion more tokens scored *lower* on instruction following.
+Flat. Statistical noise. The model that trained 70,000 extra steps on 9 billion more tokens scored *lower* on instruction following. So I lit $68 on fire to make my model slightly worse at multiple choice. Excellent.
 
-If you stopped here, you'd conclude Chinchilla-optimal pretraining doesn't matter for chat. You'd be wrong.
+If you stopped reading here, you'd conclude Chinchilla-optimal pretraining doesn't matter for chat. You'd also be completely wrong.
 
 ---
 
@@ -59,9 +59,9 @@ The difference isn't in benchmark points - it's in how long the model stays cohe
 >
 > 1. Climate: The climate plays a significant role in determining the availability of sunlight...
 
-The 160K model writes a full paragraph and starts a structured list. The 90K model writes two sentences and turns into a ouija board.
+The 160K model writes a full paragraph and starts a numbered list. The 90K model writes two sentences and turns into a ouija board.
 
-That $68 of extra pretraining? Worth it. Even if the leaderboard can't tell.
+Worth $68. The leaderboard can't see it, but the leaderboard is also wrong.
 
 ---
 
@@ -81,18 +81,18 @@ Paasilinna usavik :/ PersonZ cerro, seis de la luz...
 
 Different model. Different prompt. Different temperature. **Same garbage tokens.**
 
-Both models produce the *exact same* nonsense: `PersonX`, `AndroidRuntime`, `fefefe`, `oardvark`, `Paasilinna`, `substeps`, `usavik`. These aren't random noise - they're specific, consistent, and completely deterministic. Push the model hard enough and it collapses into them every single time, like a nervous tic it can't shake.
+Both models produce the *exact same* nonsense: `PersonX`, `AndroidRuntime`, `fefefe`, `oardvark`, `Paasilinna`, `substeps`, `usavik`. Not random noise. Specific. Reproducible. The model has approximately seven cursed words in its head, and when you push it past its comfort zone, it picks one and starts chanting.
 
 | Model | Garbage prompts | Clean |
 |---|---|---|
 | 90K Chat | 5/8 | 3/8 |
 | 160K Chat | 4/8 | 4/8 |
 
-Extra pretraining helps at the margins. But both models collapse into the same garbage from the same source. And that source is not the fine-tuning data.
+Extra pretraining helps at the margins. But both models collapse into the same garbage from the same source. And that source isn't the fine-tuning data.
 
-Something is wrong in the base model itself. Something baked in before SFT ever ran.
+The problem is baked into the base model. Something happened *before* SFT ever ran. Something I did to myself, weeks ago, without realizing it.
 
-Where do those garbage tokens come from? Can they be fixed? Next chapter is the forensics.
+Next chapter: the forensics.
 
 ---
 

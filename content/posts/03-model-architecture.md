@@ -19,12 +19,12 @@ Phase 2 was about building infrastructure for the 12GB monster coming in Phase 3
 
 | Attribute | Value |
 |-----------|-------|
-| **Dataset** | ~250MB text — still baby size |
+| **Dataset** | ~250MB text - still baby size |
 | **Tokenization** | Character-level (int16) |
-| **Model** | 4-6 layers, 256-384 dim — teenager transformer |
-| **Parameters** | ~10-50M — finally respectable |
-| **Training** | Google Colab T4/V100 — the free tier hustle |
-| **Sequence Length** | 512 — because why not |
+| **Model** | 4-6 layers, 256-384 dim - teenager transformer |
+| **Parameters** | ~10-50M - finally respectable |
+| **Training** | Google Colab T4/V100 - the free tier hustle |
+| **Sequence Length** | 512 - because why not |
 
 ### The Numbers
 
@@ -87,11 +87,11 @@ Time to stop playing around. GPT-2 Small. 134 million parameters. On a dataset t
 | Attribute | Value |
 |-----------|-------|
 | **Dataset** | 12GB of ChatGPT-style conversations |
-| **Tokenization** | BPE 32K vocab — like a grown-up |
-| **Total Tokens** | 2.8 billion — with a B |
+| **Tokenization** | BPE 32K vocab - like a grown-up |
+| **Total Tokens** | 2.8 billion - with a B |
 | **Model** | GPT-2 Small (12 layers, 768 dim, 12 heads) |
 | **Parameters** | 134 million |
-| **Training** | Colab A100 (40GB) — the big guns |
+| **Training** | Colab A100 (40GB) - the big guns |
 | **Batch Size** | 64 |
 | **Learning Rate** | 3e-4 |
 

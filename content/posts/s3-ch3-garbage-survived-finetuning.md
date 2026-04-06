@@ -1,5 +1,5 @@
 ---
-title: "I Tried Every Fine-Tuning Trick. The Garbage Survived All of Them."
+title: "Nine Experiments, Nine Funerals"
 date: 2026-03-21
 draft: true
 tags: ["season-3", "sft", "dpo", "fine-tuning", "garbage-tokens", "gpuburnout-1b", "data-quality"]
@@ -8,9 +8,11 @@ season: 3
 chapter: 3
 ---
 
-I had a diagnosis: garbage tokens come from contaminated pretraining data, not fine-tuning data. Python-Edu is the source. The contamination is baked into the base weights. SFT can't reach it.
+I had a diagnosis. Garbage tokens, pretraining contamination, baked into the base weights, unreachable by fine-tuning. Open and shut. Case closed.
 
-That was the hypothesis. Proving it meant running nine experiments and watching every single one fail.
+Except science doesn't accept "trust me bro" as evidence. The only way to *prove* the diagnosis was to try fixing it the wrong way and watch it not work. Repeatedly. With increasing desperation.
+
+Nine experiments. Zero fixes. One scoreboard. Here we go.
 
 ---
 
@@ -26,9 +28,9 @@ I built a cleaning pipeline, removed 27% of SlimOrca (139K examples), verified z
 | 4 | Cleaned SlimOrca | 10K | Yes |
 | 5 | OpenAssistant (human-written) | 8K | Yes |
 
-Run 5 is the one that matters. OpenAssistant is written entirely by humans. Zero contamination of any kind. Zero machine-generated text. Still produced identical garbage tokens.
+Run 5 is the one that matters. OpenAssistant is written by *actual human beings*. People, with hands, typing words for a community-rated dataset. No machine text. No academic crud. No GPT-4 in sight. The cleanest possible SFT data. Still produced identical garbage tokens.
 
-That killed the SFT hypothesis. Dead. Buried. Flowers optional.
+That killed the SFT hypothesis. Dead. Buried. No flowers necessary. The funeral was attended by me and a $1.49/hr A100, both of us tired.
 
 Here's the photosynthesis response after five SFT runs on three different datasets - verbatim, temperature 0.7:
 
@@ -36,7 +38,7 @@ Here's the photosynthesis response after five SFT runs on three different datase
 >
 > `PersonX @.@ PersonXGenesis 1:1 AndroidRuntime ** __ Medalists usavik substeps...`
 
-Two coherent sentences. Then collapse. Every dataset. Every configuration. Same tokens. It's like watching someone give a perfectly normal presentation and then suddenly start speaking in tongues.
+Two coherent sentences. Then collapse. Every dataset, every configuration, same tokens. Like watching someone give a perfectly normal presentation and then, mid-sentence, start speaking in tongues.
 
 ---
 
@@ -53,25 +55,25 @@ I ran a 2x2 Design of Experiments (DOE) - two variables, two levels each, four t
 | 3 | 1 | 0.3 | 5/8 |
 | 4 | 3 | 0.3 | **7/8** |
 
-More training made it worse. Higher beta made it worse. The most aggressive configuration produced garbage on 7 out of 8 prompts. I somehow made my model *dumber* by trying harder to make it smarter. That's a special kind of achievement.
+More training made it worse. Higher beta made it worse. The most aggressive configuration produced garbage on 7 out of 8 prompts. I made my model measurably *dumber* by trying harder to make it smarter. Not many people can claim that as a research result.
 
-But the real gut punch was the loss curve. DPO Run 1 started at loss **0.693** and ended at **0.691**. That starting number - 0.693 - is ln(2). It's the loss of a model that literally cannot tell the difference between the two choices. A coin flip. My 1,200 carefully curated preference pairs moved the needle by 0.002. The model basically looked at my preference data, shrugged, and went back to doing whatever it was doing before.
+But the real gut punch was the loss curve. DPO Run 1 started at **0.693** and ended at **0.691**. That starting number is ln(2) - the mathematical loss of a model that genuinely cannot tell the difference between two choices. A coin flip. My 1,200 carefully curated preference pairs - the ones I labeled by hand, prompt by prompt, agonizing over which response was "better" - moved the needle by 0.002. The model looked at my data, made the smallest possible "huh, neat" gesture, and went back to doing whatever it was doing before.
 
 ---
 
 ## Why None of This Could Have Worked
 
-The math is simple and depressing. Pretraining: 21 billion tokens. SFT: ~20 million. DPO: 1,200 pairs. That's like trying to change someone's personality with a Post-it note after they've lived 21 billion seconds of life.
+The math is simple and depressing. Pretraining: 21 billion tokens. SFT: ~20 million. DPO: 1,200 pairs. That's like trying to fix a 30-year personality with a Post-it note. The Post-it is pretty. The Post-it is well-meaning. The Post-it is not going to change anything.
 
-Cranking up beta didn't help - it's like turning up the volume to drown out static. You just get louder static.
+Cranking up beta to push harder is like turning your speaker up to drown out static. Congratulations, you have invented louder static. You have not invented less static.
 
 ---
 
 ## The 1B Is Done
 
-The 1B is archived. For the 2B, I rescanned everything, removed 660 contaminated documents, re-tokenized from scratch. 341 shards, ~38.4 billion clean tokens staged.
+The 1B is archived. For the 2B, I rescanned everything, deleted 660 contaminated documents, re-tokenized from scratch. 341 shards, ~38.4 billion clean tokens, ready to go. Round two, this time with the bouncer at the door.
 
-Season 3 ends here. Season 4: clean data, bigger model, same question. (Spoiler: it works.)
+Season 3 ends here. Season 4: clean data, bigger model, same question. (Spoiler: this time it works. The bouncer was the move all along.)
 
 ---
 

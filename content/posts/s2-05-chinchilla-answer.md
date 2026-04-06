@@ -12,23 +12,23 @@ chapter: 5
 
 [S2-03](/posts/s2-03-what-gpuburnout-1b-learned/) ended with a question I couldn't stop thinking about: *What would more training buy?*
 
-GPUburnout-1B had trained on 11.8 billion tokens — 59% of Chinchilla-optimal for a 1B model. The data was sitting there. Twenty billion tokens is the theoretically ideal ratio for a billion parameters: twenty tokens per parameter, the point where your compute budget is perfectly balanced between model size and training data. I was 41% short of that line.
+GPUburnout-1B had trained on 11.8 billion tokens - 59% of Chinchilla-optimal for a 1B model. The data was sitting there. Twenty billion tokens is the theoretically ideal ratio for a billion parameters: twenty tokens per parameter, the point where your compute budget is perfectly balanced between model size and training data. I was 41% short of that line.
 
-I'd told myself I was done. The loss curve was flattening. The diminishing returns math was brutal — [$550 per loss point](/posts/s2-02-the-175-dollar-experiment/) by Phase 4. I had written an entire [post about knowing when to stop](/posts/s2-04-lessons-from-training-1b/).
+I'd told myself I was done. The loss curve was flattening. The diminishing returns math was brutal - [$550 per loss point](/posts/s2-02-the-175-dollar-experiment/) by Phase 4. I had written an entire [post about knowing when to stop](/posts/s2-04-lessons-from-training-1b/).
 
 Then I spent a week staring at "59%" on a spreadsheet and decided I needed to know.
 
-Budget: ~$75. Goal: push from 90K steps to 160K steps — roughly 20.97 billion tokens. Chinchilla-optimal.
+Budget: ~$75. Goal: push from 90K steps to 160K steps - roughly 20.97 billion tokens. Chinchilla-optimal.
 
 ## The training
 
-Phases 5 and 6 ran on the same A100 SXM 80GB that powered the entire project, but this time on RunPod's spot instances at $0.95/hour instead of the $1.49 on-demand rate. Spot instances are the GPU equivalent of standby airline tickets — cheaper, but the airline can kick you off the plane mid-flight if someone with a full-price ticket shows up.
+Phases 5 and 6 ran on the same A100 SXM 80GB that powered the entire project, but this time on RunPod's spot instances at $0.95/hour instead of the $1.49 on-demand rate. Spot instances are the GPU equivalent of standby airline tickets - cheaper, but the airline can kick you off the plane mid-flight if someone with a full-price ticket shows up.
 
 This happened twice in thirty minutes during one particularly annoying evening. The pod gets terminated without warning, you redeploy, SSH back in, resume from the last checkpoint, and pretend you're not annoyed. You are annoyed.
 
 **Phase 5** (90K → 120K steps): ~36 hours, ~$34. Loss went from 2.494 to 2.530.
 
-Yes, you read that right. The loss went *up*. Learning rate schedule effects, different data distribution in new shards, normal noise — it's not actually getting worse. But watching the number tick upward after paying $34 for the privilege is a specific kind of suffering that no scaling laws paper prepares you for.
+Yes, you read that right. The loss went *up*. Learning rate schedule effects, different data distribution in new shards, normal noise - it's not actually getting worse. But watching the number tick upward after paying $34 for the privilege is a specific kind of suffering that no scaling laws paper prepares you for.
 
 **Phase 6** (120K → 160K steps): ~40 hours, ~$34. Loss dropped to 2.446. Redemption. Sort of.
 
@@ -41,7 +41,7 @@ Total additional spend: ~$68. Grand total for the project: ~$243.
 | Phase 6 | 120K → 160K | 2.446 | ~$34 | ~30,500 |
 | **Total** | **160K** | **2.446** | **~$243** | |
 
-The throughput actually improved — 30,500 tok/s versus the earlier 28,300 — from a newer PyTorch version on the spot instances. A free 8% speedup for doing absolutely nothing. The universe occasionally compensates you for the preemptions.
+The throughput actually improved - 30,500 tok/s versus the earlier 28,300 - from a newer PyTorch version on the spot instances. A free 8% speedup for doing absolutely nothing. The universe occasionally compensates you for the preemptions.
 
 ## Did more training help?
 
@@ -70,7 +70,7 @@ Four predictions, four F's, zero dignity. I have a PhD and I just went 0-for-4 o
 
 Here's where it gets interesting.
 
-Benchmarks are multiple-choice tests. They measure whether the model picks the right answer from four options. But language models don't take multiple-choice tests in the real world — they *generate text*. And the text at 160K is noticeably, undeniably better than at 90K.
+Benchmarks are multiple-choice tests. They measure whether the model picks the right answer from four options. But language models don't take multiple-choice tests in the real world - they *generate text*. And the text at 160K is noticeably, undeniably better than at 90K.
 
 I ran the same generation prompts I've been tracking since step 200. The differences don't show up in a score. They show up in what the model *does* with its next 200 tokens.
 
@@ -82,9 +82,9 @@ Real journal, real technique, completely invented study. At 160K:
 
 > "...the water from the hot spring was almost completely saturated with microplastics, with some microplastics reaching levels that could pose a risk to human health. A study in Science Advances found that microplastics in the water were at least five..."
 
-Also an invented study. Also a real journal. But here's what changed: the 90K model grabbed impressive-sounding words (scRNAseq! Nature!) and stapled them together. The 160K model constructed a *plausible narrative* — microplastics in hot springs is a real area of active research, *Science Advances* is where you'd actually find that kind of environmental study, and the framing ("levels that could pose a risk to human health") reads like a real press release. Both models are making things up. The 160K model is making things up *well enough to fool you for a paragraph.* That's a terrifying kind of progress, and it came from nine billion more tokens of reading how scientists actually write.
+Also an invented study. Also a real journal. But here's what changed: the 90K model grabbed impressive-sounding words (scRNAseq! Nature!) and stapled them together. The 160K model constructed a *plausible narrative* - microplastics in hot springs is a real area of active research, *Science Advances* is where you'd actually find that kind of environmental study, and the framing ("levels that could pose a risk to human health") reads like a real press release. Both models are making things up. The 160K model is making things up *well enough to fool you for a paragraph.* That's a terrifying kind of progress, and it came from nine billion more tokens of reading how scientists actually write.
 
-**The repetition loops disappeared — and factual recall exploded.** Our unofficial mascot prompt, "The capital of France is," tells the whole story across three checkpoints. At 90K:
+**The repetition loops disappeared - and factual recall exploded.** Our unofficial mascot prompt, "The capital of France is," tells the whole story across three checkpoints. At 90K:
 
 > "The capital of France is the capital city of France is Paris, it is the largest city in the country and the largest in Europe... Paris is the capital city of France, it is also the largest city of France. Paris is located in the central part of France..."
 
@@ -96,9 +96,9 @@ Seven correct capitals. Unprompted. No repetition. The model went from being una
 
 > "The capital of France is Paris. Credit card use in France: In France, credit cards are accepted in many shops, supermarkets, and restaurants..."
 
-Paris, done, moving on to credit cards. Nobody asked about credit cards. But notice what *didn't* happen — no looping, no restating. The 90K model was a broken record. The 160K model answers, pivots, and stays on the new topic like someone who actually finished a thought before starting the next one.
+Paris, done, moving on to credit cards. Nobody asked about credit cards. But notice what *didn't* happen - no looping, no restating. The 90K model was a broken record. The 160K model answers, pivots, and stays on the new topic like someone who actually finished a thought before starting the next one.
 
-**Creative writing grew sensory details.** "Once upon a time, in a land far away" — at 90K:
+**Creative writing grew sensory details.** "Once upon a time, in a land far away" - at 90K:
 
 > "...a boy who had been born in the far north saw a man coming towards him, with a basket full of berries. The boy climbed up the tree and dropped the basket into the man's hands... The man then picked the basket up, took the berries and brought them to his own home..."
 
@@ -121,11 +121,11 @@ Here's what actually happened: the model got *better at being a language model* 
 | **Detail quality** | Generic, filler-heavy | Specific, sensory |
 | **Coherence length** | ~2-3 sentences before looping | Full paragraphs, topic transitions |
 
-The 160K model doesn't know more facts than the 90K model — or if it does, the difference is too small for a four-option multiple-choice test to detect. But it *uses* what it knows more skillfully. It generates text that reads like it was written by something that understood the assignment, not something that memorized the study guide.
+The 160K model doesn't know more facts than the 90K model - or if it does, the difference is too small for a four-option multiple-choice test to detect. But it *uses* what it knows more skillfully. It generates text that reads like it was written by something that understood the assignment, not something that memorized the study guide.
 
-At 1B parameters, benchmarks hit ceilings fast. HellaSwag, MMLU, ARC-Challenge — they all plateau because the model doesn't have enough representational capacity to reason through the harder questions. More data doesn't help when the bottleneck is brain size. But more data *does* help with fluency, coherence, and factual grounding — qualities that show up in generation but not in multiple-choice scores.
+At 1B parameters, benchmarks hit ceilings fast. HellaSwag, MMLU, ARC-Challenge - they all plateau because the model doesn't have enough representational capacity to reason through the harder questions. More data doesn't help when the bottleneck is brain size. But more data *does* help with fluency, coherence, and factual grounding - qualities that show up in generation but not in multiple-choice scores.
 
-**Chinchilla-optimal matters. But not the way the scaling laws papers imply.** The improvement isn't in benchmark points. It's in the texture of the output — the difference between a model that knows facts and a model that can *write about* facts. That difference is worth $68 to me, even if the leaderboard doesn't notice.
+**Chinchilla-optimal matters. But not the way the scaling laws papers imply.** The improvement isn't in benchmark points. It's in the texture of the output - the difference between a model that knows facts and a model that can *write about* facts. That difference is worth $68 to me, even if the leaderboard doesn't notice.
 
 ## What's next
 
@@ -133,11 +133,11 @@ The Chinchilla question is answered. The 1B model is as trained as the theory sa
 
 The benchmarks say it's roughly the same model. The outputs say it's quietly, measurably better. Both of those things are true, and the tension between them is the most interesting result of this entire experiment.
 
-The real question now isn't whether this model can absorb more data. It's whether it can be made *useful* — and whether the only way past the 1B ceiling is more parameters. Season 3 is coming.
+The real question now isn't whether this model can absorb more data. It's whether it can be made *useful* - and whether the only way past the 1B ceiling is more parameters. Season 3 is coming.
 
 ---
 
-*This is Chapter 5 of Season 2. The full series: [Ch. 1 — Architecture](/posts/s2-01-from-134m-to-1b/) · [Ch. 2 — The $175 Experiment](/posts/s2-02-the-175-dollar-experiment/) · [Ch. 3 — Benchmarks](/posts/s2-03-what-gpuburnout-1b-learned/) · [Ch. 4 — Lessons](/posts/s2-04-lessons-from-training-1b/) · Ch. 5 — The Chinchilla Answer (you are here).*
+*This is Chapter 5 of Season 2. The full series: [Ch. 1 - Architecture](/posts/s2-01-from-134m-to-1b/) · [Ch. 2 - The $175 Experiment](/posts/s2-02-the-175-dollar-experiment/) · [Ch. 3 - Benchmarks](/posts/s2-03-what-gpuburnout-1b-learned/) · [Ch. 4 - Lessons](/posts/s2-04-lessons-from-training-1b/) · Ch. 5 - The Chinchilla Answer (you are here).*
 
 *Season 1 (GPT-2, 134M parameters): [Start here.](/posts/01-why-build-a-language-model/)*
 

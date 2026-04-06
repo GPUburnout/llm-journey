@@ -3,7 +3,7 @@ title: "11 Training Challenges and How I Solved Them"
 date: 2026-02-02
 draft: false
 tags: ["training", "debugging", "optimization", "torch-compile", "AMP", "flash-attention", "Colab", "season-1"]
-description: "11 real training failures and fixes from building GPT-2 Small — config bugs, memory leaks, exploding gradients, and the optimization tricks that finally made it work."
+description: "11 real training failures and fixes from building GPT-2 Small - config bugs, memory leaks, exploding gradients, and the optimization tricks that finally made it work."
 summary: "A comprehensive guide to every way I shot myself in the foot training GPT-2 Small. Learn from my pain."
 season: 1
 chapter: 4
@@ -220,7 +220,7 @@ mmap_data = np.memmap(args.bin_file, dtype=dtype_str, mode='r')
 
 **The Symptom:** 0.225s/step. Good, but the A100 still had more to give.
 
-**The Problem:** Standard attention materializes a massive `[batch, heads, seq, seq]` matrix. For batch=64, heads=12, seq=512, that's **800MB** just for attention scores — and it has to read/write from slow HBM memory.
+**The Problem:** Standard attention materializes a massive `[batch, heads, seq, seq]` matrix. For batch=64, heads=12, seq=512, that's **800MB** just for attention scores - and it has to read/write from slow HBM memory.
 
 **The Discovery:** PyTorch 2.0+ has Flash Attention built in via `scaled_dot_product_attention`:
 
@@ -279,5 +279,5 @@ output = F.scaled_dot_product_attention(Q, K, V, is_causal=True)
 
 ### On Debugging
 - **Check dtypes.** Then check them again. Then add `.long()` anyway.
-- **Config mismatches are silent killers.** SEQ_LEN, vocab_size, embed_dim — they all must match.
+- **Config mismatches are silent killers.** SEQ_LEN, vocab_size, embed_dim - they all must match.
 - **Verify file names exist.** Before writing the code that loads them. Wild concept.

@@ -3,7 +3,7 @@ title: "Why I Decided to Build a Language Model from Scratch"
 date: 2026-01-15
 draft: false
 tags: ["intro", "motivation", "transformer", "phase-1", "season-1"]
-description: "A life scientist with zero ML background decides to build GPT-2 from scratch. This is the origin story — and the first mistake."
+description: "A life scientist with zero ML background decides to build GPT-2 from scratch. This is the origin story - and the first mistake."
 summary: "Because apparently using someone else's model was too easy. Here's how I tortured myself by training GPT from scratch."
 season: 1
 chapter: 1
@@ -39,11 +39,11 @@ Started small. Like, embarrassingly small. 400K parameters on Shakespeare text. 
 
 | What | The Reality |
 |------|-------------|
-| **Dataset** | Shakespeare (~1MB) — fancy way of saying "small enough to not break my laptop" |
-| **Tokenization** | Character-level (~200 vocab) — because words are hard |
-| **Model** | Tiny (2 layers, 128 dim, 4 heads) — basically a neural network that identifies as a transformer |
-| **Parameters** | ~400K — my phone calculator has more weights |
-| **Training** | Local machine — aka "please don't crash" |
+| **Dataset** | Shakespeare (~1MB) - fancy way of saying "small enough to not break my laptop" |
+| **Tokenization** | Character-level (~200 vocab) - because words are hard |
+| **Model** | Tiny (2 layers, 128 dim, 4 heads) - basically a neural network that identifies as a transformer |
+| **Parameters** | ~400K - my phone calculator has more weights |
+| **Training** | Local machine - aka "please don't crash" |
 
 ### How Long Did This Take?
 
@@ -59,7 +59,7 @@ Look, I could've just downloaded GPT-2 and called it a day. But then I wouldn't 
 
 - That attention masks will silently destroy your gradients if you get them wrong
 - Positional encodings are annoyingly important
-- "Autoregressive" isn't just a fancy word — mess it up and your model sees the future
+- "Autoregressive" isn't just a fancy word - mess it up and your model sees the future
 
 ### The Pain Points
 
@@ -112,7 +112,7 @@ From keyboard spam to almost-Shakespeare. Progress.
 ## What's Next (aka How I Made Things Harder)
 
 Coming up in this series:
-- **Data Prep** — Where I download 12GB and regret my life choices
-- **Architecture** — Scaling from "toy model" to "actual GPT-2"
-- **Training** — 10 errors that made me question my career
-- **Results** — Did it work? (Mostly. Kind of. Define "work.")
+- **Data Prep** - Where I download 12GB and regret my life choices
+- **Architecture** - Scaling from "toy model" to "actual GPT-2"
+- **Training** - 10 errors that made me question my career
+- **Results** - Did it work? (Mostly. Kind of. Define "work.")

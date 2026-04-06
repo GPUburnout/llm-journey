@@ -20,8 +20,8 @@ Before I could train GPT-2, I needed data. A lot of it. Like, "my internet provi
 | **Final Size** | ~12GB of raw text |
 | **Format** | ChatGPT-style conversations |
 | **Tokens** | ~2.8 billion (yes, billion with a B) |
-| **Binary Size** | 11.58 GB — because apparently text needs to be even bigger |
-| **Compressed** | ~4 GB — compression is magic |
+| **Binary Size** | 11.58 GB - because apparently text needs to be even bigger |
+| **Compressed** | ~4 GB - compression is magic |
 
 ---
 
@@ -33,7 +33,7 @@ Before I could train GPT-2, I needed data. A lot of it. Like, "my internet provi
 
 *Narrator: It did not take an hour.*
 
-Turns out finding quality conversational data at scale is like finding a parking spot downtown — technically possible, but you'll lose your mind trying.
+Turns out finding quality conversational data at scale is like finding a parking spot downtown - technically possible, but you'll lose your mind trying.
 
 ### Stage 2: Cleaning Data (Denial)
 
@@ -80,18 +80,18 @@ python tokenize_local_bpe.py \
 ```
 
 **Output:**
-- `tokens_bpe.bin` (11.58 GB) — the chonky boy
-- `tokens_bpe.bin.gz` (~4 GB) — the reasonable boy
-- `bpe_tokenizer.json` — the important boy
-- `tokens_bpe_metadata.json` — the forgotten boy
+- `tokens_bpe.bin` (11.58 GB) - the chonky boy
+- `tokens_bpe.bin.gz` (~4 GB) - the reasonable boy
+- `bpe_tokenizer.json` - the important boy
+- `tokens_bpe_metadata.json` - the forgotten boy
 
 ### Stage 5: Uploading to Colab (Acceptance)
 
 **Problem:** Getting 11GB to Google Colab without dying.
 
 **Things that didn't work:**
-- Direct upload — 4 hours, then timeout. Cool.
-- Google Drive sync — "Syncing..." forever. Very helpful.
+- Direct upload - 4 hours, then timeout. Cool.
+- Google Drive sync - "Syncing..." forever. Very helpful.
 
 **What actually worked:**
 Upload the compressed version, decompress on Colab:
@@ -109,19 +109,19 @@ Upload the compressed version, decompress on Colab:
 ```
 Raw Text (12GB)
     ↓
-[dataset_cleaner.py] — Remove the garbage
+[dataset_cleaner.py] - Remove the garbage
     ↓
-Cleaned Text (10GB) — Still a lot of garbage, but cleaner garbage
+Cleaned Text (10GB) - Still a lot of garbage, but cleaner garbage
     ↓
-[tokenize_local_bpe.py] — Turn words into numbers
+[tokenize_local_bpe.py] - Turn words into numbers
     ↓
 tokens_bpe.bin (11.58GB) + bpe_tokenizer.json
     ↓
-[gzip] — Squish it real good
+[gzip] - Squish it real good
     ↓
-tokens_bpe.bin.gz (4GB) — Upload this, not the big one
+tokens_bpe.bin.gz (4GB) - Upload this, not the big one
     ↓
-[Colab: gunzip] — Unsquish it
+[Colab: gunzip] - Unsquish it
     ↓
 Ready to train (finally)
 ```

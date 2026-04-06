@@ -53,7 +53,7 @@
         position: relative;
         width: 100%;
         max-width: 1200px;
-        height: 500px;
+        height: 580px;
         overflow: hidden;
         background: #08080d;
         border-radius: 12px;
@@ -107,19 +107,23 @@
       .hero-buttons {
         margin-top: 12px;
         display: flex;
-        gap: 16px;
+        gap: 10px;
         justify-content: center;
+        flex-wrap: wrap;
         pointer-events: auto;
       }
       .hero-btn {
         font-family: 'Courier New', monospace;
-        font-size: 14px;
-        padding: 10px 24px;
+        font-size: 13px;
+        padding: 9px 18px;
         border-radius: 6px;
         text-decoration: none;
         font-weight: 600;
         letter-spacing: 1px;
         transition: all 0.2s ease;
+        white-space: nowrap;
+        flex-shrink: 0;
+        display: inline-block;
       }
       .hero-btn.primary {
         background: #22d3ee;
@@ -174,7 +178,7 @@
 
       /* Responsive adjustments */
       @media (max-width: 768px) {
-        .hero-container { height: 400px; }
+        .hero-container { height: 480px; }
         .hero-title { font-size: 32px; }
         .hero-subtitle { font-size: 11px; letter-spacing: 1.5px; }
         .hero-hook { font-size: 14px; }
@@ -182,7 +186,7 @@
         .terminal { font-size: 13px; right: 15px; top: 12px; }
       }
       @media (max-width: 480px) {
-        .hero-container { height: 360px; }
+        .hero-container { height: 460px; }
         .hero-title { font-size: 24px; }
         .hero-subtitle { font-size: 10px; letter-spacing: 1px; }
         .hero-hook { font-size: 12px; letter-spacing: 1px; }
@@ -194,7 +198,7 @@
 
     <!-- Author Blurb -->
     <div class="author-blurb">
-      <p>By <strong>Jun Park</strong> — Dangerously curious life scientist. Currently unsupervised with an A100. <a href="/about/">Read more →</a></p>
+      <p>By <strong>Jun Park</strong> - Dangerously curious life scientist. Currently unsupervised with an A100. <a href="/about/">Read more →</a></p>
       <p class="blurb-subtitle">{{ .subtitle | markdownify }}</p>
     </div>
 
@@ -415,7 +419,7 @@
     tokens.push(t);
   }
 
-  // Terminal update — counts up to final checkpoint, then holds
+  // Terminal update - counts up to final checkpoint, then holds
   let simStep = 0;
   const finalStep = 90000;
   const finalLoss = 2.494;

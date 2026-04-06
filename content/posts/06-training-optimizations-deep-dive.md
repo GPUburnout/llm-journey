@@ -39,7 +39,7 @@ Before diving into optimizations, let's make sure we're on the same page about b
 
 ### What is a Batch?
 
-A **batch** is a group of training samples processed together. Think of it like doing laundry — you don't wash one sock at a time.
+A **batch** is a group of training samples processed together. Think of it like doing laundry - you don't wash one sock at a time.
 
 ```
 Your dataset: 5.5 million sequences (each 512 tokens)
@@ -766,7 +766,7 @@ Example:
 
 ### The LR Goldilocks Problem
 
-**LR Too High (lr=1.0) — Overshooting**
+**LR Too High (lr=1.0) - Overshooting**
 ```
 Loss
   │
@@ -784,7 +784,7 @@ Loss
 Loss bounces around forever. Training goes nowhere.
 ```
 
-**LR Just Right (lr=3e-4) — Smooth Convergence**
+**LR Just Right (lr=3e-4) - Smooth Convergence**
 ```
 Loss
   │
@@ -806,7 +806,7 @@ Loss
         ① → ② → ③ → ④ → ⑤ → ★
 ```
 
-**LR Too Low (lr=1e-7) — Slow Progress**
+**LR Too Low (lr=1e-7) - Slow Progress**
 ```
 Loss
   │

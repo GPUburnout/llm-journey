@@ -1,7 +1,7 @@
 ---
 title: "Verbatim: The Proof Is in the Output"
 date: 2026-03-30
-draft: true
+draft: false
 tags: ["season-4", "inference", "gpuburnout-1b", "gpuburnout-2b", "comparison"]
 description: "Side-by-side verbatim outputs from the 1B and 2B models. Same prompts, same settings. The difference is everything."
 season: 4

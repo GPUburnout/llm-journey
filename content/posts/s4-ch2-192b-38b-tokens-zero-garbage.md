@@ -1,7 +1,7 @@
 ---
 title: "1.92B Parameters, 38.4B Tokens, Zero Garbage"
 date: 2026-03-28
-draft: true
+draft: false
 tags: ["season-4", "pretraining", "progressive-growth", "gpuburnout-2b", "data-quality"]
 description: "In which a larger, cleaner model is built from the ruins of the last one - and the hypothesis from Season 3 starts looking right."
 season: 4

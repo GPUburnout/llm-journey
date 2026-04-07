@@ -1,7 +1,7 @@
 ---
 title: "Nine Experiments, Nine Funerals"
 date: 2026-03-21
-draft: true
+draft: false
 tags: ["season-3", "sft", "dpo", "fine-tuning", "garbage-tokens", "gpuburnout-1b", "data-quality"]
 description: "A controlled experiment on why post-training alignment can't fix pretraining contamination - and what the data proves."
 season: 3

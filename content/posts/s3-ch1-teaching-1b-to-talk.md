@@ -1,7 +1,7 @@
 ---
 title: "Teaching the 1B to Talk"
 date: 2026-03-18
-draft: true
+draft: false
 tags: ["season-3", "sft", "fine-tuning", "garbage-tokens", "gpuburnout-1b"]
 description: "In which I try to make a language model useful, discover something deeply wrong, and realize I've been asking the wrong question."
 season: 3

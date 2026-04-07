@@ -1,7 +1,7 @@
 ---
 title: "7 Out of 8 - How DPO Finally Worked"
 date: 2026-03-29
-draft: true
+draft: false
 tags: ["season-4", "dpo", "sft", "alignment", "gpuburnout-2b", "fine-tuning"]
 description: "In which the same technique that failed nine times on the 1B succeeds on the 2B - and the reason why is the whole point of Season 4."
 season: 4

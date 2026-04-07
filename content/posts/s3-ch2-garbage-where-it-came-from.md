@@ -1,7 +1,7 @@
 ---
 title: "My Model's Vocabulary Came from Stack Overflow at 3am"
 date: 2026-03-18
-draft: true
+draft: false
 tags: ["season-3", "pretraining", "data-quality", "garbage-tokens", "gpuburnout-1b"]
 description: "In which a forensic investigation into nonsense tokens reveals a problem that no amount of fine-tuning can fix."
 season: 3

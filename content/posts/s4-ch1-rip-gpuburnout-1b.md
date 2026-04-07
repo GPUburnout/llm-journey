@@ -1,7 +1,7 @@
 ---
 title: "RIP GPUburnout-1B. Cause of Death: Its Own Training Data."
 date: 2026-03-22
-draft: true
+draft: false
 tags: ["season-4", "pretraining", "data-quality", "gpuburnout-2b", "gpuburnout-1b"]
 description: "In which the 1B model is officially retired, the autopsy is filed, and a better model begins."
 season: 4
